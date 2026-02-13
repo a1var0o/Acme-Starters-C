@@ -4,7 +4,6 @@ package acme.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -13,7 +12,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
-import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidUrl;
 import acme.realms.Fundraiser;
 import lombok.Getter;
@@ -46,10 +44,12 @@ public class Strategy extends AbstractEntity {
 
 	@Mandatory
 	@ValidMoment(constraint = Constraint.ENFORCE_FUTURE)
+	//@Temporal(TemporalType.TIMESTAMP)
 	private Moment				startMoment;
 
 	@Mandatory
 	@ValidMoment(constraint = Constraint.ENFORCE_FUTURE)
+	//@Temporal(TemporalType.TIMESTAMP)
 	private Moment				endMoment;
 
 	@Optional
@@ -57,26 +57,32 @@ public class Strategy extends AbstractEntity {
 	@Column
 	private String				moreInfo;
 
-
-	@Valid
-	@Transient
-	private Double monthsActive() {
-		return null;
-	};
-
-
-	@Mandatory
-	@ValidScore
-	@Transient
-	private Double		expectedPercentage;
+	/*
+	 * Derived properties
+	 * 
+	 * @Valid
+	 * 
+	 * @Transient
+	 * private Double monthsActive() {
+	 * return null;
+	 * };
+	 * 
+	 * 
+	 * @Mandatory
+	 * 
+	 * @ValidScore
+	 * 
+	 * @Transient
+	 * private Double expectedPercentage;
+	 */
 
 	@Mandatory
 	@Valid
 	@Column
-	private Boolean		draftMode;
+	private Boolean				draftMode;
 
 	@Mandatory
 	@Valid
 	@ManyToOne
-	private Fundraiser	fundraiser;
+	private Fundraiser			fundraiser;
 }
