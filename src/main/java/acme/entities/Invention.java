@@ -13,6 +13,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidUrl;
+import acme.realms.Inventor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,32 +31,32 @@ public class Invention extends AbstractEntity {
 	@Mandatory
 	// @ValidTicker
 	@Column(unique = true)
-	String						ticker;
+	private String				ticker;
 
 	@Mandatory
 	// @ValidHeader
 	@Column
-	String						header;
+	private String				header;
 
 	@Mandatory
 	// @ValidText
 	@Column
-	String						description;
+	private String				description;
 
 	@Mandatory
 	@ValidMoment(constraint = Constraint.ENFORCE_FUTURE)
 	// @Temporal(TemporalType.TIMESTAMP)
-	Moment						startMoment;
+	private Moment				startMoment;
 
 	@Mandatory
 	@ValidMoment(constraint = Constraint.ENFORCE_FUTURE)
 	// @Temporal(TemporalType.TIMESTAMP)
-	Moment						endMoment;
+	private Moment				endMoment;
 
 	@Optional
 	@ValidUrl
 	@Column
-	String						moreInfo;
+	private String				moreInfo;
 
 	//	@Mandatory
 	//	@Valid
@@ -74,10 +75,10 @@ public class Invention extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Column
-	Boolean						draftMode;
+	private Boolean				draftMode;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Inventor					inventor;
+	private Inventor			inventor;
 }

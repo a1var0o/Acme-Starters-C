@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,15 +24,15 @@ public class Inventor extends AbstractRole {
 	@Mandatory
 	// @ValidText
 	@Column
-	String						bio;
+	private String				bio;
 
 	@Mandatory
 	// @ValidText
 	@Column
-	String						keyWords;
+	private String				keyWords;
 
 	@Mandatory
 	@Valid
 	@Column
-	Boolean						licensed;
+	private Boolean				licensed;
 }
