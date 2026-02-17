@@ -1,18 +1,27 @@
 
 package acme.entities;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Moment;
+import acme.client.components.datatypes.Money;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidUrl;
+import acme.client.helpers.MomentHelper;
 import acme.realms.Inventor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +36,10 @@ public class Invention extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	// ------------------------------------------------------------------------
+
+	@Autowired
+	@Transient
+	InventionRepository			inventionRepository;
 
 	@Mandatory
 	// @ValidTicker
@@ -45,40 +58,42 @@ public class Invention extends AbstractEntity {
 
 	@Mandatory
 	@ValidMoment(constraint = Constraint.ENFORCE_FUTURE)
-	// @Temporal(TemporalType.TIMESTAMP)
-	private Moment				startMoment;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				startMoment;
 
 	@Mandatory
 	@ValidMoment(constraint = Constraint.ENFORCE_FUTURE)
-	// @Temporal(TemporalType.TIMESTAMP)
-	private Moment				endMoment;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				endMoment;
 
 	@Optional
 	@ValidUrl
 	@Column
 	private String				moreInfo;
 
+
 	//	@Mandatory
-	//	@Valid
-	//	@Transient
-	//	public Double monthsActive() {
-	//		
-	//	}
-	//
+	@Valid
+	@Transient
+	public Double monthsActive() {
+		return Double.valueOf(MomentHelper.computeDuration(this.startMoment, this.endMoment).get(ChronoUnit.MONTHS));
+	}
+
 	//	@Mandatory
 	//	@ValidMoney()
-	//	@Transient
-	//	public Money cost() {
-	//		
-	//	}
+	@Transient
+	public Money cost() {
+		return this.inventionRepository.computeTotalCost(this.getId());
+	}
+
 
 	@Mandatory
 	@Valid
 	@Column
-	private Boolean				draftMode;
+	private Boolean		draftMode;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Inventor			inventor;
+	private Inventor	inventor;
 }
