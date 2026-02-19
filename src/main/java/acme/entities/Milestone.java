@@ -10,6 +10,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
 import acme.datatypes.MilestoneKind;
+import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +22,7 @@ public class Milestone extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	//@ValidHeader 
+	@ValidHeader
 	@Column
 	private String				title;
 

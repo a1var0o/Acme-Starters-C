@@ -22,6 +22,7 @@ import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidUrl;
 import acme.client.helpers.MomentHelper;
 import acme.realms.Spokesperson;
+import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,7 +39,7 @@ public class Campaign extends AbstractEntity {
 	private String				ticker;
 
 	@Mandatory
-	//@ValidHeader
+	@ValidHeader
 	@Column
 	private String				name;
 
