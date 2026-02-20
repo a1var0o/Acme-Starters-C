@@ -1,6 +1,8 @@
 
 package acme.entities;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,7 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
@@ -16,6 +21,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidUrl;
+import acme.client.helpers.MomentHelper;
 import acme.realms.Auditor;
 import lombok.Getter;
 import lombok.Setter;
@@ -57,27 +63,38 @@ public class AuditReport extends AbstractEntity {
 	@Column
 	private String				moreInfo;
 
-	//	@Mandatory
-	//	@Valid
-	//	@Transient
-	//	public Double monthsActive() {
-	//		
-	//	}
-	//
-	//	@Mandatory
-	//	@ValidMoney()
-	//	@Transient
-	//	public Integer hours() {
-	//		
-	//	}
+
+	//@Mandatory
+	@Valid
+	@Transient
+	private Double monthsActive() {
+		Double result = null;
+		Duration duration = MomentHelper.computeDuration(this.startMoment, this.endMoment);
+		result = Double.valueOf(duration.get(ChronoUnit.MONTHS));
+		return result;
+	}
+
+
+	@Autowired
+	@Transient
+	private AuditReportRepository repository;
+
+
+	//@Mandatory
+	//@ValidNumber
+	@Transient
+	private Integer totalHours() {
+		return this.repository.getTotalHours(this.getId());
+	}
+
 
 	@Mandatory
 	@Valid
 	@Column
-	private Boolean				draftMode;
+	private Boolean	draftMode;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Auditor				auditor;
+	private Auditor	auditor;
 }
