@@ -25,7 +25,7 @@ public @interface ValidText {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{placeholder}";
+	String message() default "{acme.validation.text.message}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 
