@@ -88,7 +88,8 @@ public class Invention extends AbstractEntity {
 	public Money cost() {
 		Money res = new Money();
 		res.setCurrency("EUR");
-		res.setAmount(this.inventionRepository.computeTotalCost(this.getId()));
+		Double cost = this.inventionRepository.computeTotalCost(this.getId());
+		res.setAmount(cost == null ? 0 : cost);
 		return res;
 	}
 
