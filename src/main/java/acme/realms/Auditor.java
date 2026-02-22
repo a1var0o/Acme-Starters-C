@@ -7,33 +7,29 @@ import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.validation.Mandatory;
-import acme.constraints.ValidText;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Inventor extends AbstractRole {
-
-	// Serialisation identifier -----------------------------------------------
+public class Auditor extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
-	// ------------------------------------------------------------------------
+	@Mandatory
+	//@ValidHeader
+	@Column
+	private String				firm;
 
 	@Mandatory
-	@ValidText
+	//@ValidHeader
 	@Column
-	private String				bio;
-
-	@Mandatory
-	@ValidText
-	@Column
-	private String				keyWords;
+	private String				highlights;
 
 	@Mandatory
 	@Valid
 	@Column
-	private Boolean				licensed;
+	private Boolean				solicitor;
+
 }

@@ -15,16 +15,15 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidUrl;
 import acme.client.helpers.MomentHelper;
-import acme.constraints.ValidText;
 import acme.constraints.ValidTicker;
-import acme.realms.Inventor;
+import acme.constraints.ValidText;
+import acme.realms.Spokesperson;
 import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,17 +31,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Invention extends AbstractEntity {
-
-	// Serialisation identifier -----------------------------------------------
+public class Campaign extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
-
-	// ------------------------------------------------------------------------
-
-	@Autowired
-	@Transient
-	InventionRepository			inventionRepository;
 
 	@Mandatory
 	@ValidTicker
@@ -52,7 +43,7 @@ public class Invention extends AbstractEntity {
 	@Mandatory
 	@ValidHeader
 	@Column
-	private String				header;
+	private String				name;
 
 	@Mandatory
 	@ValidText
@@ -74,29 +65,36 @@ public class Invention extends AbstractEntity {
 	@Column
 	private String				moreInfo;
 
-
-	//	@Mandatory
-	@Valid
-	@Transient
-	public Double monthsActive() {
-		return Double.valueOf(MomentHelper.computeDuration(this.startMoment, this.endMoment).get(ChronoUnit.MONTHS));
-	}
-
-	//	@Mandatory
-	// @ValidMoney
-	@Transient
-	public Money cost() {
-		return this.inventionRepository.computeTotalCost(this.getId());
-	}
-
-
 	@Mandatory
 	@Valid
 	@Column
-	private Boolean		draftMode;
+	private Boolean				draftMode;
+
+	//Derived attributes
+
+	@Autowired
+	@Transient
+	private CampaignRepository	repository;
+
+
+	//@Mandatory
+	@Valid
+	@Transient
+	private Double monthsActive() {
+		return Double.valueOf(MomentHelper.computeDuration(this.startMoment, this.endMoment).get(ChronoUnit.MONTHS));
+	}
+
+	//@Mandatory
+	//@ValidNumber(min = 0)
+	@Transient
+	private Double effort() {
+		return this.repository.totalEffort(this.getId());
+	}
+	//Relationships ------------------------------------------------
+
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Inventor	inventor;
+	private Spokesperson spokesperson;
 }

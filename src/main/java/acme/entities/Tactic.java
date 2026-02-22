@@ -7,11 +7,10 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidScore;
 import acme.constraints.ValidText;
-import acme.datatypes.PartKind;
+import acme.datatypes.TacticKind;
 import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,13 +18,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Part extends AbstractEntity {
+public class Tactic extends AbstractEntity {
 
-	// Serialisation identifier -----------------------------------------------
+	// Serialisation version --------------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
 
-	// ------------------------------------------------------------------------
+	// Attributes -------------------------------------------------------------
 
 	@Mandatory
 	@ValidHeader
@@ -35,21 +34,20 @@ public class Part extends AbstractEntity {
 	@Mandatory
 	@ValidText
 	@Column
-	private String				description;
+	private String				notes;
 
 	@Mandatory
-	@ValidMoney(min = 0)
+	@ValidScore
 	@Column
-	private Money				cost;
+	private Double				expectedPercentage;
 
 	@Mandatory
 	@Valid
 	@Column
-	private PartKind			kind;
+	private TacticKind			kind;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Invention			invention;
-
+	private Strategy			strategy;
 }

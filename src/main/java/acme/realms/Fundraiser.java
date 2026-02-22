@@ -8,32 +8,33 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.validation.Mandatory;
 import acme.constraints.ValidText;
+import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Inventor extends AbstractRole {
+public class Fundraiser extends AbstractRole {
 
-	// Serialisation identifier -----------------------------------------------
+	// Serialisation version --------------------------------------------------
 
 	private static final long	serialVersionUID	= 1L;
 
-	// ------------------------------------------------------------------------
+	// Attributes -------------------------------------------------------------
+
+	@Mandatory
+	@ValidHeader
+	@Column
+	private String				bank;
 
 	@Mandatory
 	@ValidText
 	@Column
-	private String				bio;
-
-	@Mandatory
-	@ValidText
-	@Column
-	private String				keyWords;
+	private String				statement;
 
 	@Mandatory
 	@Valid
 	@Column
-	private Boolean				licensed;
+	private Boolean				agent;
 }

@@ -7,11 +7,10 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
 import acme.constraints.ValidText;
-import acme.datatypes.PartKind;
+import acme.datatypes.MilestoneKind;
 import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,37 +18,33 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Part extends AbstractEntity {
-
-	// Serialisation identifier -----------------------------------------------
+public class Milestone extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
-
-	// ------------------------------------------------------------------------
 
 	@Mandatory
 	@ValidHeader
 	@Column
-	private String				name;
+	private String				title;
 
 	@Mandatory
 	@ValidText
 	@Column
-	private String				description;
+	private String				achievements;
 
 	@Mandatory
-	@ValidMoney(min = 0)
+	@ValidNumber(min = 0)
 	@Column
-	private Money				cost;
+	private Double				effort;
 
 	@Mandatory
 	@Valid
 	@Column
-	private PartKind			kind;
+	private MilestoneKind		kind;
 
+	//Relationships ------------------------------------------------
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Invention			invention;
-
+	private Campaign			campaign;
 }
