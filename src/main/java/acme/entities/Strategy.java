@@ -16,6 +16,7 @@ import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidTicker;
 import acme.constraints.ValidText;
 import acme.realms.Fundraiser;
+import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,7 +36,7 @@ public class Strategy extends AbstractEntity {
 	private String				ticker;
 
 	@Mandatory
-	//@ValidHeader
+	@ValidHeader
 	@Column
 	private String				name;
 

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.validation.Mandatory;
 import acme.constraints.ValidText;
+import constraints.ValidHeader;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,8 +29,7 @@ public class Sponsor extends AbstractRole {
 	private String				address;
 
 	@Mandatory
-	// TODO: implement validator
-	// @ValidHeader
+	@ValidHeader
 	@Column
 	private String				im;
 
