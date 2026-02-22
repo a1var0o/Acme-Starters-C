@@ -23,6 +23,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoment.Constraint;
 import acme.client.components.validation.ValidUrl;
 import acme.client.helpers.MomentHelper;
+import acme.constraints.ValidTicker;
 import acme.constraints.ValidText;
 import acme.realms.Sponsor;
 import lombok.Getter;
@@ -40,8 +41,7 @@ public class Sponsorship extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	// TODO: implement validator
-	// @ValidTicker
+	@ValidTicker
 	@Column(unique = true)
 	private String				ticker;
 
@@ -52,7 +52,6 @@ public class Sponsorship extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	// TODO: implement validator
 	@ValidText
 	@Column
 	private String				description;
