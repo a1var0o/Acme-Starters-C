@@ -7,19 +7,16 @@ import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidMoney;
-import acme.constraints.ValidText;
-import acme.datatypes.DonationKind;
-import constraints.ValidHeader;
+import acme.client.components.validation.ValidNumber;
+import acme.datatypes.SectionKind;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Donation extends AbstractEntity {
+public class AuditSection extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
@@ -28,25 +25,24 @@ public class Donation extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidHeader
+	// @ValidHeader
 	@Column
 	private String				name;
 
 	@Mandatory
-	// TODO: implement validator
-	@ValidText
+	// @ValidText
 	@Column
 	private String				notes;
 
 	@Mandatory
-	@ValidMoney(min = 0)
+	@ValidNumber(min = 0)
 	@Column
-	private Money				money;
+	private Integer				hours;
 
 	@Mandatory
 	@Valid
 	@Column
-	private DonationKind		kind;
+	private SectionKind			kind;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -54,7 +50,7 @@ public class Donation extends AbstractEntity {
 
 	@Mandatory
 	@Valid
-	@ManyToOne
-	private Sponsorship			sponsorship;
+	@ManyToOne(optional = false)
+	private AuditReport			auditReport;
 
 }
