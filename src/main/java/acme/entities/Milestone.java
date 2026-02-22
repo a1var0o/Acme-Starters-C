@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
+import acme.constraints.ValidText;
 import acme.datatypes.MilestoneKind;
 import constraints.ValidHeader;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class Milestone extends AbstractEntity {
 	private String				title;
 
 	@Mandatory
-	//@ValidText
+	@ValidText
 	@Column
 	private String				achievements;
 

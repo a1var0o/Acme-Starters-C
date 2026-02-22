@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidScore;
+import acme.constraints.ValidText;
 import acme.datatypes.TacticKind;
 import constraints.ValidHeader;
 import lombok.Getter;
@@ -31,7 +32,7 @@ public class Tactic extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	//@ValidText
+	@ValidText
 	@Column
 	private String				notes;
 
