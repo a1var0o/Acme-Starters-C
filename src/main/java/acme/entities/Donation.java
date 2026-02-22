@@ -33,7 +33,6 @@ public class Donation extends AbstractEntity {
 	private String				name;
 
 	@Mandatory
-	// TODO: implement validator
 	@ValidText
 	@Column
 	private String				notes;
