@@ -7,3 +7,12 @@ user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза 
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
 user-account-req0-administrator-01,true,"UserIdentity{name: 'Admin', surname: 'One', email: 'admin1@acme.com'}",administrator1,administrator1
 user-account-req0-administrator-02,true,"UserIdentity{name: 'Admin', surname: 'Two', email: 'admin2@acme.com'}",administrator2,administrator2
+user-account-inventor-01,true,"UserIdentity{name: 'Inventor', surname: 'One', email: 'acme_inventor@acme.org'}",inventor1,inventor1
+user-account-inventor-02,true,"UserIdentity{name: 'Inventor', surname: 'Two', email: 'inventor2@us.es'}",inventor2,inventor2
+user-account-inventor-03,true,"UserIdentity{name: 'Marina', surname: 'โลเร็ม อิปซัม', email: 'ps@us.es'}",inventor3,inventor3
+user-account-inventor-04,true,"UserIdentity{name: 'John', surname: 'Λορεμ ιπσθμ', email: 'ps@alum.us.es'}",inventor4,inventor4
+user-account-inventor-05,true,"UserIdentity{name: 'John', surname: 'Doe', email: 'a@b.esx'}",inventor5,inventor5
+user-account-inventor-06,true,"UserIdentity{name: 'Joanne', surname: 'Doe', email: 'b@b.esx'}",inventor6,inventor6
+user-account-inventor-07,true,"UserIdentity{name: 'Joanne', surname: 'Dœ', email: 'c@b.esx'}",inventor7,inventor7
+user-account-inventor-08,true,"UserIdentity{name: 'Joanne', surname: 'Doe', email: 'd@b.esx'}",inventor8,inventor8
+user-account-inventor-09,true,"UserIdentity{name: 'Joanne', surname: 'Doe', email: 'e@b.esx'}",inventor9,inventor9
