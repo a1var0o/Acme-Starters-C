@@ -83,8 +83,8 @@ public class AuditReport extends AbstractEntity {
 	@Transient
 	private Double monthsActive() {
 		Double result = 0.0;
-		Duration duration = MomentHelper.computeDuration(this.startMoment, this.endMoment);
-		result = Double.valueOf(duration.get(ChronoUnit.MONTHS));
+	//	Duration duration = MomentHelper.computeDuration(this.startMoment, this.endMoment);
+	//	result = Double.valueOf(duration.get(ChronoUnit.MONTHS));
 		return result;
 	}
 
