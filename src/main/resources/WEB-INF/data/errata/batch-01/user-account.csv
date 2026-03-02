@@ -1,5 +1,5 @@
 key,enabled,identity,password,username
-user-account-inventor-01,true,"UserIdentity{name: 'Peter', surname: 'Consumer', email: 'peter@acme.com'}",inventor1,inventor1
+user-account-inventor-01,true,"UserIdentity{name: '', surname: 'Consumer', email: 'peter@acme.com'}",inventor1,inventor1
 user-account-spokesperson-01,true,"UserIdentity{name: '', surname: 'One', email: 'spokesperson1@acme.com'}",spokesperson1,spokesperson1
 user-account-spokesperson-02,true,"UserIdentity{name: '', surname: 'One', email: 'spokesperson1@acme.com'}",spokesperson1,spokesperson1
 user-account-spokesperson-03,true,"UserIdentity{name: '', surname: 'One', email: 'spokesperson1@acme.com'}",spokesperson1,spokesperson1
