@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.tactic;
+package acme.features.any.tactic;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,7 +8,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.Tactic;
 
 @Repository
-public interface AuthenticatedTacticRepository extends AbstractRepository {
+public interface AnyTacticRepository extends AbstractRepository {
 
 	@Query("select t from Tactic t where t.id = :id")
 	Tactic findTacticById(int id);

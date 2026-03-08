@@ -1,24 +1,24 @@
 
-package acme.features.authenticated.tactic;
+package acme.features.any.tactic;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.Strategy;
 import acme.entities.Tactic;
-import acme.realms.Fundraiser;
 
 @Service
-public class AuthenticatedTacticListService extends AbstractService<Fundraiser, Tactic> {
+public class AnyTacticListService extends AbstractService<Any, Tactic> {
 
 	@Autowired
-	private AuthenticatedTacticRepository	repository;
+	private AnyTacticRepository	repository;
 
-	private Collection<Tactic>				tactics;
-	private Strategy						strategy;
+	private Collection<Tactic>	tactics;
+	private Strategy			strategy;
 
 
 	@Override

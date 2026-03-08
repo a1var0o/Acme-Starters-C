@@ -1,23 +1,23 @@
 
-package acme.features.authenticated.strategy;
+package acme.features.any.strategy;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 
+import acme.client.components.principals.Any;
 import acme.client.controllers.AbstractController;
 import acme.entities.Strategy;
-import acme.realms.Fundraiser;
 
 @Controller
-public class AuthenticatedStrategyController extends AbstractController<Fundraiser, Strategy> {
+public class AnyStrategyController extends AbstractController<Any, Strategy> {
 
 	@PostConstruct
 	protected void initialise() {
 		super.setMediaType(MediaType.TEXT_HTML);
 
-		super.addBasicCommand("list", AuthenticatedStrategyListService.class);
-		super.addBasicCommand("show", AuthenticatedStrategyShowService.class);
+		super.addBasicCommand("list", AnyStrategyListService.class);
+		super.addBasicCommand("show", AnyStrategyShowService.class);
 	}
 }

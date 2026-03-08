@@ -1,24 +1,24 @@
 
-package acme.features.authenticated.tactic;
+package acme.features.any.tactic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.Strategy;
 import acme.entities.Tactic;
-import acme.realms.Fundraiser;
 
 @Service
-public class AuthenticatedTacticShowService extends AbstractService<Fundraiser, Tactic> {
+public class AnyTacticShowService extends AbstractService<Any, Tactic> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedTacticRepository	repository;
+	private AnyTacticRepository	repository;
 
-	private Tactic							tactic;
+	private Tactic				tactic;
 
-	private Strategy						strategy;
+	private Strategy			strategy;
 
 	// AbstractService interface -------------------------------------------
 
