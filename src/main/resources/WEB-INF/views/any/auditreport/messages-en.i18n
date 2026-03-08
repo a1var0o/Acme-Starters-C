@@ -1,0 +1,14 @@
+any.auditreport.list.title = Inventions
+any.auditreport.list.label.ticker = Ticker
+any.auditreport.list.label.name = Name
+any.auditreport.list.label.description = Description
+any.auditreport.list.label.startMoment = Start moment
+any.auditreport.list.label.endMoment = End moment
+
+any.auditreport.form.title = Audit Report
+any.auditreport.show.label.name = Name
+any.auditreport.show.label.description = Description
+any.auditreport.show.label.startMoment = Start moment
+any.auditreport.show.label.endMoment = End moment
+any.auditreport.show.label.auditor = Auditor
+any.auditreport.show.label.auditsection = Audit Section

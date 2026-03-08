@@ -1,0 +1,11 @@
+any.part.list.title = Audit Section
+any.part.list.label.name = Name
+any.part.list.label.notes = Notes
+any.part.list.label.hours = Hours
+any.part.list.label.kind = Kind
+
+any.part.form.title = Audit Section
+any.part.form.label.name = Name
+any.part.form.label.notes = Notes
+any.part.form.label.hours = Hours
+any.part.form.label.kind = Kind

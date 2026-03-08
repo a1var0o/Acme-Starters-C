@@ -1,0 +1,14 @@
+any.auditreport.list.title = Informe de auditoría
+any.auditreport.list.label.ticker = Ticker
+any.auditreport.list.label.name = Nombre
+any.auditreport.list.label.description = Descripción
+any.auditreport.list.label.startMoment = Momento de inicio
+any.auditreport.list.label.endMoment = Momento de fin
+
+any.auditreport.form.title = Informe de auditoría
+any.auditreport.show.label.name = Nombre
+any.auditreport.show.label.description = Descripción
+any.auditreport.show.label.startMoment = Momento de inicio
+any.auditreport.show.label.endMoment = Momento de fin
+any.auditreport.show.label.auditor = Auditoría
+any.auditreport.show.label.auditsection = Sección de auditoría
