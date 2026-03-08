@@ -24,12 +24,14 @@ public class AnyTacticListService extends AbstractService<Any, Tactic> {
 	@Override
 	public void load() {
 
+		int strategyId = super.getRequest().getData("strategyId", int.class);
+		this.strategy = this.repository.findStrategyById(strategyId);
 		//this.tactics = this.repository.findTacticsByStrategy(this.strategy.getId());
 	}
 
 	@Override
 	public void authorise() {
-		super.setAuthorised(true);
+		super.setAuthorised(!this.strategy.getDraftMode());
 	}
 
 	@Override

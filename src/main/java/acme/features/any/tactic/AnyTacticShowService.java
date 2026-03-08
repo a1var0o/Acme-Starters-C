@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
-import acme.entities.Strategy;
 import acme.entities.Tactic;
 
 @Service
@@ -17,8 +16,6 @@ public class AnyTacticShowService extends AbstractService<Any, Tactic> {
 	private AnyTacticRepository	repository;
 
 	private Tactic				tactic;
-
-	private Strategy			strategy;
 
 	// AbstractService interface -------------------------------------------
 
@@ -34,7 +31,7 @@ public class AnyTacticShowService extends AbstractService<Any, Tactic> {
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.tactic.getStrategy().equals(this.strategy);
+		status = !this.tactic.getStrategy().getDraftMode();
 		super.setAuthorised(status);
 	}
 
