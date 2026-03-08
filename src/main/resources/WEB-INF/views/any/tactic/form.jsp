@@ -7,6 +7,6 @@
 	<acme:form-textbox code="any.tactic.list.label.name" path="name"/>
 	<acme:form-textbox code="any.tactic.list.label.notes" path="notes"/>
 	<acme:form-double code="any.tactic.list.label.expectedPercentage" path="expectedPercentage"/>
-	<acme:form-textbox code="any.tactic.list.label.kind" path="Kind" />
-	<acme:form-integer code="any.strategy.list.label.strategy" path="strategy"/>
+	<acme:form-textbox code="any.tactic.list.label.kind" path="kind" />
+	<acme:form-integer code="any.tactic.list.label.strategy" path="strategy"/>
 </acme:form>
