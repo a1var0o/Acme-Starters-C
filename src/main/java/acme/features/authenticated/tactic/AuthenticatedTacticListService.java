@@ -24,7 +24,7 @@ public class AuthenticatedTacticListService extends AbstractService<Fundraiser, 
 	@Override
 	public void load() {
 
-		this.tactics = this.repository.findTacticsByStrategy(this.strategy.getId());
+		//this.tactics = this.repository.findTacticsByStrategy(this.strategy.getId());
 	}
 
 	@Override

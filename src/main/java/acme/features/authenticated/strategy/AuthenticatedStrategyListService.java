@@ -22,7 +22,7 @@ public class AuthenticatedStrategyListService extends AbstractService<Fundraiser
 	@Override
 	public void load() {
 
-		this.strategies = this.repository.findStrategiesByDraftMode(false);
+		//this.strategies = this.repository.findStrategiesByDraftMode(false);
 	}
 
 	@Override
