@@ -15,4 +15,3 @@
 	<acme:list-hidden path="moreInfo"/>
 	<acme:list-hidden path="draftMode"/>
 </acme:list>
-o
