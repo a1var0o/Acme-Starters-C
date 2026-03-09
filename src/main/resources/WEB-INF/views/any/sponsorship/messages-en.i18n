@@ -14,3 +14,6 @@ any.sponsorship.form.button.sponsor = Sponsor profile
 
 any.sponsorship.list.label.ticker = Ticker 
 any.sponsorship.list.label.name = Name
+any.sponsorship.list.label.sponsor = Sponsor
+any.sponsorship.list.label.startMoment = Start date
+any.sponsorship.list.label.endMoment = Finish date

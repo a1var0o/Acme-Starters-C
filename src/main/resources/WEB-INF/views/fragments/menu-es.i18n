@@ -8,11 +8,15 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+# master.menu.any #######################################################
+
+master.menu.any = Cualquiera
+master.menu.any.list-sponsorships = Ver patrocinios
+
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
-master.menu.anonymous.list-sponsorships = Ver patrocinios
 
 # master.menu.administrator ###################################################
 
