@@ -17,7 +17,11 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:menu-bar>
-	<acme:menu-left>
+		<acme:menu-left>
+			<acme:menu-option code="master.menu.any" access="hasRealm('Any')">
+			<acme:menu-suboption code="master.menu.any.list-inventions" action="/any/invention/list" />
+		</acme:menu-option>
+	
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
