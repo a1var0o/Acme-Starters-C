@@ -9,7 +9,7 @@
 	<acme:form-textarea code="any.strategy.list.label.description" path="description"/>
 	<acme:form-moment code="any.strategy.list.label.startMoment" path="startMoment"/>
 	<acme:form-moment code="any.strategy.list.label.endMoment" path="endMoment"/>
-	<acme:form-integer code="any.strategy.list.label.fundraiser" path="fundraiser"/>
 	
 	<acme:button code="any.strategy.form.button.tactics" action="/any/tactic/list?strategyId=${id}"/>
+	<acme:button code="any.strategy.form.button.fundraiser" action="/any/fundraiser/show?strategyId=${id}"/>
 </acme:form>

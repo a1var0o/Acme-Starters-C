@@ -10,7 +10,6 @@
 	<acme:list-column code="any.strategy.list.label.description" path="description" width="40%"/>
 	<acme:list-column code="any.strategy.list.label.startMoment" path="startMoment" width="10%"/>
 	<acme:list-column code="any.strategy.list.label.endMoment" path="endMoment" width="10%"/>
-	<acme:list-column code="any.strategy.list.label.fundraiser" path="fundraiser" width="10%"/>
 	<acme:list-hidden path="moreInfo"/>
 	<acme:list-hidden path="draftMode"/>
 </acme:list>
