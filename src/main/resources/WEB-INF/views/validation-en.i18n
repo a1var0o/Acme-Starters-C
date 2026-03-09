@@ -1,3 +1,7 @@
 acme.validation.ticker.message		= The ticker must have exactly two capital letters and two digits, a dash, and between five or ten numbers, letters or underscores. Example: AB12-EX_Tick12
 acme.validation.text.message   		= Must have from 1 to 255 characters
 acme.validation.header.message  	= Must have from 1 to 75 characters
+
+acme.validation.sponsorship.duplicated-ticker.message = The ticker is duplicated
+acme.validation.sponsorship.donations.message		  = Sponsorships cannot be published unless they have at least one donation
+acme.validation.sponsorship.interval.message          = Start and end dates must be a valid time interval in future
