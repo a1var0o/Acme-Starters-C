@@ -33,6 +33,15 @@ public class InventionValidator extends AbstractValidator<ValidInvention, Invent
 			result = true;
 		else {
 			{
+				boolean uniqueInvention;
+				Invention existingInvention;
+
+				existingInvention = this.repository.findInventionByTicker(invention.getTicker());
+				uniqueInvention = existingInvention == null || existingInvention.equals(invention);
+
+				super.state(context, uniqueInvention, "ticker", "acme.validation.invention.duplicated-ticker.message");
+			}
+			{
 				boolean enoughParts;
 
 				enoughParts = invention.getDraftMode() || !this.repository.getPartsByInventionId(invention.getId()).isEmpty();
