@@ -1,16 +1,18 @@
 
 package acme.features.fundraiser.strategy;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractService;
 import acme.entities.Strategy;
+import acme.entities.Tactic;
 import acme.realms.Fundraiser;
 
 @Service
-public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser, Strategy> {
+public class FundraiserStrategyDeleteService extends AbstractService<Fundraiser, Strategy> {
 
 	@Autowired
 	private FundraiserStrategyRepository	repository;
@@ -20,6 +22,7 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 	@Override
 	public void load() {
 		int id;
+
 		id = super.getRequest().getData("id", int.class);
 		this.strategy = this.repository.findStrategyById(id);
 	}
@@ -29,6 +32,7 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 		boolean status;
 
 		status = this.strategy != null && this.strategy.getDraftMode() && this.strategy.getFundraiser().isPrincipal();
+
 		super.setAuthorised(status);
 	}
 
@@ -39,22 +43,21 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 
 	@Override
 	public void validate() {
-		super.validateObject(this.strategy);
+		;
 	}
 
 	@Override
 	public void execute() {
-		this.repository.save(this.strategy);
+		Collection<Tactic> tactics;
+
+		tactics = this.repository.findTacticsByStrategyId(this.strategy.getId());
+		this.repository.deleteAll(tactics);
+		this.repository.delete(this.strategy);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
-	}
 
-	@Override
-	public void onSuccess() {
-		if (super.getRequest().getMethod().equals("POST"))
-			PrincipalHelper.handleUpdate();
+		super.unbindObject(this.strategy, "ticker", "title", "deadline", "salary", "score", "moreInfo", "description", "draftMode");
 	}
 }

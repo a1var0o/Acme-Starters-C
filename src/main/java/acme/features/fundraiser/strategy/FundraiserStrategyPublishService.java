@@ -4,13 +4,13 @@ package acme.features.fundraiser.strategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.helpers.PrincipalHelper;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.entities.Strategy;
 import acme.realms.Fundraiser;
 
 @Service
-public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser, Strategy> {
+public class FundraiserStrategyPublishService extends AbstractService<Fundraiser, Strategy> {
 
 	@Autowired
 	private FundraiserStrategyRepository	repository;
@@ -20,6 +20,7 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 	@Override
 	public void load() {
 		int id;
+
 		id = super.getRequest().getData("id", int.class);
 		this.strategy = this.repository.findStrategyById(id);
 	}
@@ -29,6 +30,7 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 		boolean status;
 
 		status = this.strategy != null && this.strategy.getDraftMode() && this.strategy.getFundraiser().isPrincipal();
+
 		super.setAuthorised(status);
 	}
 
@@ -39,22 +41,23 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 
 	@Override
 	public void validate() {
-		super.validateObject(this.strategy);
+		//		super.validateObject(this.strategy);
+		{
+			boolean futureInterval;
+
+			futureInterval = MomentHelper.isFuture(this.strategy.getStartMoment());
+			super.state(futureInterval, "*", "acme.validation.strategy.no-future-interval.message");
+		}
 	}
 
 	@Override
 	public void execute() {
+		this.strategy.setDraftMode(false);
 		this.repository.save(this.strategy);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
-	}
-
-	@Override
-	public void onSuccess() {
-		if (super.getRequest().getMethod().equals("POST"))
-			PrincipalHelper.handleUpdate();
+		super.unbindObject(this.strategy, "ticker", "title", "deadline", "salary", "score", "moreInfo", "description", "draftMode");
 	}
 }
