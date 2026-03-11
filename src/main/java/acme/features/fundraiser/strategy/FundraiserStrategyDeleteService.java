@@ -38,7 +38,7 @@ public class FundraiserStrategyDeleteService extends AbstractService<Fundraiser,
 
 	@Override
 	public void bind() {
-		super.bindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+		super.bindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override
@@ -58,6 +58,6 @@ public class FundraiserStrategyDeleteService extends AbstractService<Fundraiser,
 	@Override
 	public void unbind() {
 
-		super.unbindObject(this.strategy, "ticker", "title", "deadline", "salary", "score", "moreInfo", "description", "draftMode");
+		super.unbindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
 	}
 }

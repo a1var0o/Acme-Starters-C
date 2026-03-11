@@ -34,7 +34,7 @@ public class FundraiserStrategyUpdateService extends AbstractService<Fundraiser,
 
 	@Override
 	public void bind() {
-		super.bindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+		super.bindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override

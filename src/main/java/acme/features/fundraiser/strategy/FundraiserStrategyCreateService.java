@@ -27,6 +27,7 @@ public class FundraiserStrategyCreateService extends AbstractService<Fundraiser,
 		this.fundraiser = this.repository.findFundraiserByUserAccountId(userAccountId);
 
 		this.strategy = new Strategy();
+		this.strategy.setDraftMode(true);
 		this.strategy.setFundraiser(this.fundraiser);
 	}
 
@@ -40,7 +41,7 @@ public class FundraiserStrategyCreateService extends AbstractService<Fundraiser,
 
 	@Override
 	public void bind() {
-		super.bindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+		super.bindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override
