@@ -15,3 +15,4 @@ inventor.invention.form.label.endMoment = End moment
 inventor.invention.form.label.moreInfo = More info (optional)
 inventor.invention.form.button.parts = Parts
 inventor.invention.form.button.create = Create
+inventor.invention.form.button.update = Update

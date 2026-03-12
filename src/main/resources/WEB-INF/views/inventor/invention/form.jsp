@@ -16,5 +16,8 @@
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="inventor.invention.form.button.create" action="/inventor/invention/create"/>
 		</jstl:when>
+		<jstl:when test="${acme:anyOf(_command, 'show|update') && draftMode == true}">
+			<acme:submit code="inventor.invention.form.button.update" action="/inventor/invention/update"/>
+		</jstl:when>
 	</jstl:choose>
 </acme:form>
