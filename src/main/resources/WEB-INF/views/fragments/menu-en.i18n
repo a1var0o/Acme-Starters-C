@@ -23,6 +23,11 @@ master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
 
+# master.menu.inventor #############################################################
+
+master.menu.inventor = Inventor
+master.menu.inventor.list-inventions = List my inventions
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider
@@ -43,7 +48,6 @@ master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
 master.menu.user-account.become-fundraiser = Become a fundraiser
 master.menu.user-account.fundraiser-profile = Fundraiser profile
-
 
 # master.menu.spokesperson ##########################################################
 

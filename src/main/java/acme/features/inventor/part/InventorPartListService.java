@@ -1,24 +1,24 @@
 
-package acme.features.any.part;
+package acme.features.inventor.part;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.components.principals.Any;
 import acme.client.services.AbstractService;
 import acme.entities.Invention;
 import acme.entities.Part;
+import acme.realms.Inventor;
 
 @Service
-public class AnyPartListService extends AbstractService<Any, Part> {
+public class InventorPartListService extends AbstractService<Inventor, Part> {
 
 	@Autowired
-	private AnyPartRepository	repository;
+	private InventorPartRepository	repository;
 
-	private Invention			invention;
-	private Collection<Part>	parts;
+	private Invention				invention;
+	private Collection<Part>		parts;
 
 
 	@Override
@@ -34,7 +34,7 @@ public class AnyPartListService extends AbstractService<Any, Part> {
 	public void authorise() {
 		boolean status;
 
-		status = this.invention != null && !this.invention.getDraftMode();
+		status = this.invention != null && super.getRequest().getPrincipal().hasRealmOfType(Inventor.class) && this.invention.getInventor().getUserAccount().getId() == super.getRequest().getPrincipal().getAccountId();
 		super.setAuthorised(status);
 	}
 
