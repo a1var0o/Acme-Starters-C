@@ -12,10 +12,15 @@
 
 master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
+<<<<<<< HEAD
 
 # master.menu.any #######################################################
 
 master.menu.any.list-campaigns = Mostrar campañas
+=======
+master.menu.anonymous.list-strategies = Ver estrategias
+master.menu.anonymous.list-campaigns = Mostrar campañas
+>>>>>>> bde076273b2abc8acf39c8a54eaaf4043b077c66
 
 # master.menu.administrator ###################################################
 
@@ -48,3 +53,9 @@ master.menu.user-account.consumer-profile = Perfil de consumidor
 
 master.menu.spokesperson  = Portavoz
 master.menu.spokesperson.list-campaigns = Mostrar mis campañas
+
+# master.menu.any ##########################################################
+
+master.menu.any = Cualquiera
+master.menu.any.list-strategies = Mostrar todas las estrategias
+
