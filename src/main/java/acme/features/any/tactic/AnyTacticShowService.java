@@ -31,7 +31,7 @@ public class AnyTacticShowService extends AbstractService<Any, Tactic> {
 	@Override
 	public void authorise() {
 		boolean status;
-		status = !this.tactic.getStrategy().getDraftMode();
+		status = this.tactic != null && !this.tactic.getStrategy().getDraftMode();
 		super.setAuthorised(status);
 	}
 

@@ -36,7 +36,7 @@ public class FundraiserTacticCreateService extends AbstractService<Fundraiser, T
 	public void authorise() {
 		boolean status;
 
-		status = super.getRequest().getPrincipal().hasRealmOfType(Fundraiser.class) && this.tactic.getStrategy().getFundraiser().isPrincipal() && !this.tactic.getStrategy().getDraftMode();
+		status = this.strategy != null && this.tactic.getStrategy().getFundraiser().isPrincipal() && !this.tactic.getStrategy().getDraftMode();
 		super.setAuthorised(status);
 	}
 
