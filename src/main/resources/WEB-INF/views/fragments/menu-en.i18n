@@ -48,6 +48,11 @@ master.menu.user-account.consumer-profile = Consumer profile
 master.menu.spokesperson  = Spokesperson
 master.menu.spokesperson.list-campaigns = List my campaigns
 
+# master.menu.fundraiser ##########################################################
+
+master.menu.fundraiser = Fundraiser
+master.menu.fundraiser.list-strategies = List my strategies
+
 # master.menu.any ##########################################################
 
 master.menu.any = Any

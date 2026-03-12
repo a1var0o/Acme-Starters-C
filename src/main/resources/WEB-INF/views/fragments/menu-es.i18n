@@ -52,3 +52,8 @@ master.menu.any = Cualquiera
 master.menu.any.list-strategies = Mostrar todas las estrategias
 master.menu.any.list-campaigns = Mostrar campañas
 
+# master.menu.fundraiser ##########################################################
+
+master.menu.fundraiser = Recaudador
+master.menu.fundraiser.list-strategies = Mostrar mis estrategias
+
