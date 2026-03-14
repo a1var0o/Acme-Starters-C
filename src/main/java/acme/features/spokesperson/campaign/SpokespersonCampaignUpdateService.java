@@ -4,26 +4,22 @@ package acme.features.spokesperson.campaign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractService;
 import acme.entities.Campaign;
 import acme.realms.Spokesperson;
 
 @Service
-public class SpokespersonCampaignShowService extends AbstractService<Spokesperson, Campaign> {
-	// Internal state ---------------------------------------------------------
+public class SpokespersonCampaignUpdateService extends AbstractService<Spokesperson, Campaign> {
 
 	@Autowired
 	private SpokespersonCampaignRepository	repository;
-
 	private Campaign						campaign;
-
-	// AbstractService interface -------------------------------------------
 
 
 	@Override
 	public void load() {
 		int id;
-
 		id = super.getRequest().getData("id", int.class);
 		this.campaign = this.repository.findCampaignById(id);
 	}
@@ -31,13 +27,34 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.campaign != null && (this.campaign.getSpokesperson().isPrincipal() || !this.campaign.getDraftMode());
 
+		status = this.campaign != null && this.campaign.getDraftMode() && this.campaign.getSpokesperson().isPrincipal();
 		super.setAuthorised(status);
+	}
+
+	@Override
+	public void bind() {
+		super.bindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
+	}
+
+	@Override
+	public void validate() {
+		super.validateObject(this.campaign);
+	}
+
+	@Override
+	public void execute() {
+		this.repository.save(this.campaign);
 	}
 
 	@Override
 	public void unbind() {
 		super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+	}
+
+	@Override
+	public void onSuccess() {
+		if (super.getRequest().getMethod().equals("POST"))
+			PrincipalHelper.handleUpdate();
 	}
 }

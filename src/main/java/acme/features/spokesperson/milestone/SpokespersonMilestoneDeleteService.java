@@ -10,15 +10,11 @@ import acme.entities.Milestone;
 import acme.realms.Spokesperson;
 
 @Service
-public class SpokespersonMilestoneShowService extends AbstractService<Spokesperson, Milestone> {
-	// Internal state ---------------------------------------------------------
+public class SpokespersonMilestoneDeleteService extends AbstractService<Spokesperson, Milestone> {
 
 	@Autowired
 	private SpokespersonMilestoneRepository	repository;
-
 	private Milestone						milestone;
-
-	// AbstractService interface -------------------------------------------
 
 
 	@Override
@@ -32,15 +28,32 @@ public class SpokespersonMilestoneShowService extends AbstractService<Spokespers
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.milestone != null && (this.milestone.getCampaign().getSpokesperson().isPrincipal() || !this.milestone.getCampaign().getDraftMode());
+
+		status = this.milestone != null && this.milestone.getCampaign().getDraftMode() && this.milestone.getCampaign().getSpokesperson().isPrincipal();
+
 		super.setAuthorised(status);
+	}
+
+	@Override
+	public void bind() {
+		super.bindObject(this.milestone, "title", "achievements", "effort", "kind");
+	}
+
+	@Override
+	public void validate() {
+		;
+	}
+
+	@Override
+	public void execute() {
+		this.repository.delete(this.milestone);
 	}
 
 	@Override
 	public void unbind() {
 		Tuple tuple;
 
-		tuple = super.unbindObject(this.milestone, "title", "achievements", "effort", "kind", "campaign");
+		tuple = super.unbindObject(this.milestone, "title", "achievements", "effort", "kind");
 		tuple.put("campaignId", this.milestone.getCampaign().getId());
 		tuple.put("draftMode", this.milestone.getCampaign().getDraftMode());
 	}

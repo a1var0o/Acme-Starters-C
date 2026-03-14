@@ -13,4 +13,4 @@ acme.validation.invention.interval.message = End moment must be after start mome
 acme.validation.campaign.duplicated-ticker.message = Duplicate ticker
 acme.validation.campaign.milestones.message = Campaign must have at least 1 milestone
 acme.validation.campaign.interval.message = The interval between start and end isn't valid
-
+acme.validation.campaign.no-future-interval.message = The interval must start in the future with respect to the date of publication
