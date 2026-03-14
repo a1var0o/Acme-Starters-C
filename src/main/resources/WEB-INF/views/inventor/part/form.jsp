@@ -8,4 +8,10 @@
 	<acme:form-textarea code="inventor.part.list.label.description" path="description"/>
 	<acme:form-money code="inventor.part.list.label.cost" path="cost"/>
 	<acme:form-textbox code="inventor.part.list.label.kind" path="kind"/>
+	
+	<jstl:choose>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="inventor.part.form.button.create" action="/inventor/part/create?inventionId=${inventionId}"/>
+		</jstl:when>		
+	</jstl:choose>	
 </acme:form>
