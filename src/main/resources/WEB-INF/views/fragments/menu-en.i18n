@@ -50,6 +50,8 @@ master.menu.user-account.become-fundraiser = Become a fundraiser
 master.menu.user-account.fundraiser-profile = Fundraiser profile
 master.menu.user-account.become-spokesperson= Become a spokesperson
 master.menu.user-account.spokesperson-profile = Spokesperson profile
+master.menu.user-account.become-auditor= Become an auditor
+master.menu.user-account.auditor-profile = Auditor profile
 
 # master.menu.spokesperson ##########################################################
 
@@ -61,6 +63,11 @@ master.menu.spokesperson.list-campaigns = List my campaigns
 
 master.menu.fundraiser = Fundraiser
 master.menu.fundraiser.list-strategies = List my strategies
+
+# master.menu.auditor ##########################################################
+
+master.menu.auditor  = Auditor
+master.menu.auditor.list-auditreports = List my audit reports
 
 # master.menu.any ##########################################################
 
