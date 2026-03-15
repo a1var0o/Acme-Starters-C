@@ -10,7 +10,7 @@ import acme.entities.Tactic;
 import acme.realms.Fundraiser;
 
 @Service
-public class FundraiserTacticShowService extends AbstractService<Fundraiser, Tactic> {
+public class FundraiserTacticUpdateService extends AbstractService<Fundraiser, Tactic> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -32,8 +32,26 @@ public class FundraiserTacticShowService extends AbstractService<Fundraiser, Tac
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.tactic != null && (this.tactic.getStrategy().getFundraiser().isPrincipal() || !this.tactic.getStrategy().getDraftMode());
+
+		status = this.tactic != null && this.tactic.getStrategy().getDraftMode() && this.tactic.getStrategy().getFundraiser().isPrincipal();
+
 		super.setAuthorised(status);
+	}
+
+	@Override
+	public void bind() {
+		super.bindObject(this.tactic, "name", "notes", "expectedPercentage", "kind");
+	}
+
+	@Override
+	public void validate() {
+		super.validateObject(this.tactic);
+		;
+	}
+
+	@Override
+	public void execute() {
+		this.repository.save(this.tactic);
 	}
 
 	@Override

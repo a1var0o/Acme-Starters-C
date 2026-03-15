@@ -1,23 +1,22 @@
 
 package acme.features.fundraiser.strategy;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.services.AbstractService;
 import acme.entities.Strategy;
+import acme.entities.Tactic;
 import acme.realms.Fundraiser;
 
 @Service
-public class FundraiserStrategyShowService extends AbstractService<Fundraiser, Strategy> {
-	// Internal state ---------------------------------------------------------
+public class FundraiserStrategyDeleteService extends AbstractService<Fundraiser, Strategy> {
 
 	@Autowired
 	private FundraiserStrategyRepository	repository;
-
 	private Strategy						strategy;
-
-	// AbstractService interface -------------------------------------------
 
 
 	@Override
@@ -31,13 +30,34 @@ public class FundraiserStrategyShowService extends AbstractService<Fundraiser, S
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.strategy != null && (this.strategy.getFundraiser().isPrincipal() || !this.strategy.getDraftMode());
+
+		status = this.strategy != null && this.strategy.getDraftMode() && this.strategy.getFundraiser().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
+	public void bind() {
+		super.bindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
+	}
+
+	@Override
+	public void validate() {
+		;
+	}
+
+	@Override
+	public void execute() {
+		Collection<Tactic> tactics;
+
+		tactics = this.repository.findTacticsByStrategyId(this.strategy.getId());
+		this.repository.deleteAll(tactics);
+		this.repository.delete(this.strategy);
+	}
+
+	@Override
 	public void unbind() {
+
 		super.unbindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
 	}
 }

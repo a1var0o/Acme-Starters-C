@@ -12,8 +12,6 @@
 
 master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link = Favourite link
-master.menu.anonymous.list-strategies = List strategies
-master.menu.anonymous.list-campaigns = List campaigns
 
 # master.menu.administrator ###################################################
 
@@ -57,6 +55,7 @@ master.menu.user-account.spokesperson-profile = Spokesperson profile
 
 master.menu.spokesperson  = Spokesperson
 master.menu.spokesperson.list-campaigns = List my campaigns
+
 
 # master.menu.fundraiser ##########################################################
 
