@@ -1,0 +1,17 @@
+sponsor.donation.list.label.name = Name
+sponsor.donation.list.label.notes = Notes
+sponsor.donation.list.label.money = Money
+sponsor.donation.list.label.kind = Kind
+
+sponsor.donation.form.label.name = Name
+sponsor.donation.form.label.notes = Notes
+sponsor.donation.form.label.money = Money
+sponsor.donation.form.label.kind = Kind
+
+sponsor.donation.form.button.update = Update donation
+sponsor.donation.form.button.delete = Delete donation
+sponsor.donation.list.button.create = Create a donation
+sponsor.donation.form.button.create = Create donation
+
+sponsor.donation.list.title = Donations
+sponsor.donation.form.title = Donation

@@ -4,11 +4,13 @@ package acme.features.sponsor.sponsorship;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import acme.client.services.AbstractService;
 import acme.entities.Sponsorship;
 import acme.realms.Sponsor;
 
+@Service
 public class SponsorSponsorshipListService extends AbstractService<Sponsor, Sponsorship> {
 
 	// Internal state ---------------------------------------------------------
@@ -23,7 +25,9 @@ public class SponsorSponsorshipListService extends AbstractService<Sponsor, Spon
 
 	@Override
 	public void load() {
-		int sponsorId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int sponsorId;
+
+		sponsorId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		this.sponsorships = this.repository.findSponsorshipsBySponsorId(sponsorId);
 	}
 
