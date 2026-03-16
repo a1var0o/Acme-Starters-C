@@ -26,7 +26,7 @@ public class AnyAuditSectionListService extends AbstractService<Any, AuditSectio
 		int auditReportId;
 		auditReportId = super.getRequest().getData("id", int.class);
 
-		this.auditreport = this.repository.findCampaign(auditReportId);
+		this.auditreport = this.repository.findAuditReport(auditReportId);
 		this.auditsections = this.repository.findAuditSectionsByAuditReport(auditReportId);
 	}
 

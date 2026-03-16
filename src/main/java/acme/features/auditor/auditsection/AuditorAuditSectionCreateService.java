@@ -28,14 +28,14 @@ public class AuditorAuditSectionCreateService extends AbstractService<Auditor, A
 		this.auditreport = this.repository.findAuditReportById(auditReportId);
 
 		this.auditsection = super.newObject(AuditSection.class);
-		this.auditsection.setAuditreport(this.auditreport);
+		this.auditsection.setAuditReport(this.auditreport);
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditreport != null && this.auditsection.getAuditreport().getAuditor().isPrincipal() && this.auditsection.getAuditreport().getDraftMode();
+		status = this.auditreport != null && this.auditsection.getAuditReport().getAuditor().isPrincipal() && this.auditsection.getAuditReport().getDraftMode();
 		super.setAuthorised(status);
 	}
 
@@ -60,6 +60,6 @@ public class AuditorAuditSectionCreateService extends AbstractService<Auditor, A
 
 		tuple = super.unbindObject(this.auditsection, "name", "notes", "hours", "kind");
 		tuple.put("auditReportId", super.getRequest().getData("auditReportId", int.class));
-		tuple.put("draftMode", this.auditsection.getAuditreport().getDraftMode());
+		tuple.put("draftMode", this.auditsection.getAuditReport().getDraftMode());
 	}
 }

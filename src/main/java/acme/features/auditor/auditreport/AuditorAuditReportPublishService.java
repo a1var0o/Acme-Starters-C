@@ -1,5 +1,5 @@
 
-package acme.features.spokesperson.campaign;
+package acme.features.auditor.auditreport;
 
 import java.util.Collection;
 import java.util.Date;

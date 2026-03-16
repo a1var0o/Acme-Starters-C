@@ -13,7 +13,7 @@ import acme.entities.AuditSection;
 @Repository
 public interface AnyAuditSectionRepository extends AbstractRepository {
 
-	@Query("SELECT m from AuditSection m where m.auditreport.id = :auditReportId")
+	@Query("SELECT m from AuditSection m where m.auditReport.id = :auditReportId")
 	Collection<AuditSection> findAuditSectionsByAuditReport(int auditReportId);
 
 	@Query("SELECT m from AuditSection m where m.id = :auditSectionId")

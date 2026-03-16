@@ -4,6 +4,7 @@ package acme.features.auditor.auditsection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.components.models.Tuple;
 import acme.client.services.AbstractService;
 import acme.entities.AuditSection;
 import acme.realms.Auditor;
@@ -28,7 +29,7 @@ public class AuditorAuditSectionShowService extends AbstractService<Auditor, Aud
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.auditsection != null && (this.auditsection.getAuditreport().getAuditor().isPrincipal() || !this.auditsection.getAuditreport().getDraftMode());
+		status = this.auditsection != null && (this.auditsection.getAuditReport().getAuditor().isPrincipal() || !this.auditsection.getAuditReport().getDraftMode());
 		super.setAuthorised(status);
 	}
 
@@ -37,7 +38,7 @@ public class AuditorAuditSectionShowService extends AbstractService<Auditor, Aud
 		Tuple tuple;
 
 		tuple = super.unbindObject(this.auditsection, "name", "notes", "hours", "kind", "auditreport");
-		tuple.put("auditReportId", this.auditsection.getAuditreport().getId());
-		tuple.put("draftMode", this.auditsection.getAuditreport().getDraftMode());
+		tuple.put("auditReportId", this.auditsection.getAuditReport().getId());
+		tuple.put("draftMode", this.auditsection.getAuditReport().getDraftMode());
 	}
 }

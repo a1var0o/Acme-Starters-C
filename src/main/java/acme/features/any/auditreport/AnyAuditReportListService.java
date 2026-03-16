@@ -21,7 +21,7 @@ public class AnyAuditReportListService extends AbstractService<Any, AuditReport>
 
 	@Override
 	public void load() {
-		this.auditsreports = this.repository.findPublishedAuditReports();
+		this.auditreports = this.repository.findPublishedAuditReports();
 	}
 
 	@Override
