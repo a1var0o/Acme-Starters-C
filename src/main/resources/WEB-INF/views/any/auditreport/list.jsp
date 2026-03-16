@@ -9,5 +9,5 @@
 	<acme:list-column code="any.auditreport.list.label.description" path="description" width="50%"/>
 	<acme:list-column code="any.auditreport.list.label.startMoment" path="startMoment" width="10%"/>
 	<acme:list-column code="any.auditreport.list.label.endMoment" path="endMoment" width="10%"/>
-	<acme:list-hidden path="moreIfo"/>
+	<acme:list-hidden path="moreInfo"/>
 </acme:list>
