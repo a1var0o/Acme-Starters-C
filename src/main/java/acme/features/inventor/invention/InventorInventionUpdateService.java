@@ -9,18 +9,21 @@ import acme.entities.Invention;
 import acme.realms.Inventor;
 
 @Service
-public class InventorInventionShowService extends AbstractService<Inventor, Invention> {
+public class InventorInventionUpdateService extends AbstractService<Inventor, Invention> {
 
 	@Autowired
-	private InventorInventionRepository	repository;
+	InventorInventionRepository	repository;
 
-	private Invention					invention;
+	Invention					invention;
+	Inventor					inventor;
 
 
 	@Override
 	public void load() {
 		int id;
 		id = super.getRequest().getData("id", int.class);
+
+		this.inventor = (Inventor) super.getRequest().getPrincipal().getActiveRealm();
 
 		this.invention = this.repository.findInvention(id);
 	}
@@ -29,8 +32,24 @@ public class InventorInventionShowService extends AbstractService<Inventor, Inve
 	public void authorise() {
 		boolean status;
 
-		status = this.invention != null && super.getRequest().getPrincipal().hasRealmOfType(Inventor.class) && this.invention.getInventor().getUserAccount().getId() == super.getRequest().getPrincipal().getAccountId();
+		status = this.invention != null && this.invention.getInventor().equals(this.inventor) && this.invention.getDraftMode();
+
 		super.setAuthorised(status);
+	}
+
+	@Override
+	public void validate() {
+		super.validateObject(this.invention);
+	}
+
+	@Override
+	public void execute() {
+		this.repository.save(this.invention);
+	}
+
+	@Override
+	public void bind() {
+		super.bindObject(this.invention, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override
