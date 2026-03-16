@@ -1,23 +1,22 @@
 
 package acme.features.spokesperson.campaign;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.services.AbstractService;
 import acme.entities.Campaign;
+import acme.entities.Milestone;
 import acme.realms.Spokesperson;
 
 @Service
-public class SpokespersonCampaignShowService extends AbstractService<Spokesperson, Campaign> {
-	// Internal state ---------------------------------------------------------
+public class SpokespersonCampaignDeleteService extends AbstractService<Spokesperson, Campaign> {
 
 	@Autowired
 	private SpokespersonCampaignRepository	repository;
-
 	private Campaign						campaign;
-
-	// AbstractService interface -------------------------------------------
 
 
 	@Override
@@ -31,13 +30,34 @@ public class SpokespersonCampaignShowService extends AbstractService<Spokesperso
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.campaign != null && (this.campaign.getSpokesperson().isPrincipal() || !this.campaign.getDraftMode());
+
+		status = this.campaign != null && this.campaign.getDraftMode() && this.campaign.getSpokesperson().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
+	public void bind() {
+		super.bindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
+	}
+
+	@Override
+	public void validate() {
+		;
+	}
+
+	@Override
+	public void execute() {
+		Collection<Milestone> milestones;
+
+		milestones = this.repository.findMilestonesByCampaignId(this.campaign.getId());
+		this.repository.deleteAll(milestones);
+		this.repository.delete(this.campaign);
+	}
+
+	@Override
 	public void unbind() {
+
 		super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
 	}
 }
