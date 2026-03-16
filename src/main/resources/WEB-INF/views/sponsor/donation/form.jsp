@@ -5,9 +5,9 @@
 
 <acme:form>
 	<acme:form-textbox code="sponsor.donation.form.label.name" path="name"/>
-	<acme:form-textarea code="sponsor.donation.form.label.notes" path="notes"/>
 	<acme:form-money code="sponsor.donation.form.label.money" path="money"/>
-	<acme:form-textbox code="sponsor.donation.form.label.kind" path="kind"/>
+	<acme:form-select code="sponsor.donation.form.label.kind" path="kind" choices="${donationKinds}"/>
+	<acme:form-textarea code="sponsor.donation.form.label.notes" path="notes"/>
 
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">

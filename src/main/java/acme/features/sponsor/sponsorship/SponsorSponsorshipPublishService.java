@@ -1,3 +1,4 @@
+
 package acme.features.sponsor.sponsorship;
 
 import java.util.Collection;
@@ -60,14 +61,14 @@ public class SponsorSponsorshipPublishService extends AbstractService<Sponsor, S
 			Collection<Donation> donations = this.repository.findDonationsBySponsorshipId(this.sponsorship.getId());
 			boolean atLeastOneDonation = !donations.isEmpty();
 
-			super.state(atLeastOneDonation, "*", "acme.validation.sponsorship.no-donations-and-published.message");
+			super.state(atLeastOneDonation, "*", "acme.validation.sponsorship.donations.message");
 		}
 		{
 			Date start = this.sponsorship.getStartMoment();
 			Date end = this.sponsorship.getEndMoment();
 			boolean correctDates = MomentHelper.isBefore(start, end);
 
-			super.state(correctDates, "*", "acme.validation.sponsorship.correct-interval.message");
+			super.state(correctDates, "*", "acme.validation.sponsorship.interval.message");
 		}
 	}
 
