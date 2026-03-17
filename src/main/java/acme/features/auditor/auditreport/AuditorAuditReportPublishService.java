@@ -18,7 +18,7 @@ public class AuditorAuditReportPublishService extends AbstractService<Auditor, A
 
 	@Autowired
 	private AuditorAuditReportRepository	repository;
-	private AuditReport						auditreport;
+	private AuditReport						auditReport;
 
 
 	@Override
@@ -26,41 +26,41 @@ public class AuditorAuditReportPublishService extends AbstractService<Auditor, A
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		this.auditreport = this.repository.findAuditReportById(id);
+		this.auditReport = this.repository.findAuditReportById(id);
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditreport != null && this.auditreport.getDraftMode() && this.auditreport.getAuditor().isPrincipal();
+		status = this.auditReport != null && this.auditReport.getDraftMode() && this.auditReport.getAuditor().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
 	public void bind() {
-		super.bindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
+		super.bindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override
 	public void validate() {
-		super.validateObject(this.auditreport);
+		super.validateObject(this.auditReport);
 		{
 			boolean futureInterval;
 
-			futureInterval = MomentHelper.isFuture(this.auditreport.getStartMoment());
+			futureInterval = MomentHelper.isFuture(this.auditReport.getStartMoment());
 			super.state(futureInterval, "*", "acme.validation.auditreport.no-future-interval.message");
 		}
 		{
-			Collection<AuditSection> auditsections = this.repository.findAuditSectionsByAuditReportId(this.auditreport.getId());
-			boolean atLeastOneAuditSection = !auditsections.isEmpty();
+			Collection<AuditSection> auditSections = this.repository.findAuditSectionsByAuditReportId(this.auditReport.getId());
+			boolean atLeastOneAuditSection = !auditSections.isEmpty();
 
 			super.state(atLeastOneAuditSection, "*", "acme.validation.auditreport.auditsections.message");
 		}
 		{
-			Date start = this.auditreport.getStartMoment();
-			Date end = this.auditreport.getEndMoment();
+			Date start = this.auditReport.getStartMoment();
+			Date end = this.auditReport.getEndMoment();
 			boolean correctDates = MomentHelper.isBefore(start, end);
 
 			super.state(correctDates, "*", "acme.validation.auditreport.interval.message");
@@ -69,12 +69,12 @@ public class AuditorAuditReportPublishService extends AbstractService<Auditor, A
 
 	@Override
 	public void execute() {
-		this.auditreport.setDraftMode(false);
-		this.repository.save(this.auditreport);
+		this.auditReport.setDraftMode(false);
+		this.repository.save(this.auditReport);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+		super.unbindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
 	}
 }

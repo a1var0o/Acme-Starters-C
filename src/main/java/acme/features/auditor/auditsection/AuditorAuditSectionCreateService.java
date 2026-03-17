@@ -16,8 +16,8 @@ public class AuditorAuditSectionCreateService extends AbstractService<Auditor, A
 	@Autowired
 	private AuditorAuditSectionRepository	repository;
 
-	private AuditReport						auditreport;
-	private AuditSection					auditsection;
+	private AuditReport						auditReport;
+	private AuditSection					auditSection;
 
 
 	@Override
@@ -25,41 +25,41 @@ public class AuditorAuditSectionCreateService extends AbstractService<Auditor, A
 		int auditReportId;
 
 		auditReportId = super.getRequest().getData("auditReportId", int.class);
-		this.auditreport = this.repository.findAuditReportById(auditReportId);
+		this.auditReport = this.repository.findAuditReportById(auditReportId);
 
-		this.auditsection = super.newObject(AuditSection.class);
-		this.auditsection.setAuditReport(this.auditreport);
+		this.auditSection = super.newObject(AuditSection.class);
+		this.auditSection.setAuditReport(this.auditReport);
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditreport != null && this.auditsection.getAuditReport().getAuditor().isPrincipal() && this.auditsection.getAuditReport().getDraftMode();
+		status = this.auditReport != null && this.auditSection.getAuditReport().getAuditor().isPrincipal() && this.auditSection.getAuditReport().getDraftMode();
 		super.setAuthorised(status);
 	}
 
 	@Override
 	public void bind() {
-		super.bindObject(this.auditsection, "name", "notes", "hours", "kind");
+		super.bindObject(this.auditSection, "name", "notes", "hours", "kind");
 	}
 
 	@Override
 	public void validate() {
-		super.validateObject(this.auditsection);
+		super.validateObject(this.auditSection);
 	}
 
 	@Override
 	public void execute() {
-		this.repository.save(this.auditsection);
+		this.repository.save(this.auditSection);
 	}
 
 	@Override
 	public void unbind() {
 		Tuple tuple;
 
-		tuple = super.unbindObject(this.auditsection, "name", "notes", "hours", "kind");
+		tuple = super.unbindObject(this.auditSection, "name", "notes", "hours", "kind");
 		tuple.put("auditReportId", super.getRequest().getData("auditReportId", int.class));
-		tuple.put("draftMode", this.auditsection.getAuditReport().getDraftMode());
+		tuple.put("draftMode", this.auditSection.getAuditReport().getDraftMode());
 	}
 }

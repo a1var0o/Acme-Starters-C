@@ -14,7 +14,7 @@ public class AuditorAuditSectionDeleteService extends AbstractService<Auditor, A
 
 	@Autowired
 	private AuditorAuditSectionRepository	repository;
-	private AuditSection					auditsection;
+	private AuditSection					auditSection;
 
 
 	@Override
@@ -22,21 +22,21 @@ public class AuditorAuditSectionDeleteService extends AbstractService<Auditor, A
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		this.auditsection = this.repository.findAuditSectionById(id);
+		this.auditSection = this.repository.findAuditSectionById(id);
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditsection != null && this.auditsection.getAuditReport().getDraftMode() && this.auditsection.getAuditReport().getAuditor().isPrincipal();
+		status = this.auditSection != null && this.auditSection.getAuditReport().getDraftMode() && this.auditSection.getAuditReport().getAuditor().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
 	public void bind() {
-		super.bindObject(this.auditsection, "name", "notes", "hours", "kind");
+		super.bindObject(this.auditSection, "name", "notes", "hours", "kind");
 	}
 
 	@Override
@@ -46,15 +46,15 @@ public class AuditorAuditSectionDeleteService extends AbstractService<Auditor, A
 
 	@Override
 	public void execute() {
-		this.repository.delete(this.auditsection);
+		this.repository.delete(this.auditSection);
 	}
 
 	@Override
 	public void unbind() {
 		Tuple tuple;
 
-		tuple = super.unbindObject(this.auditsection, "name", "notes", "hours", "kind");
-		tuple.put("AuditReportId", this.auditsection.getAuditReport().getId());
-		tuple.put("draftMode", this.auditsection.getAuditReport().getDraftMode());
+		tuple = super.unbindObject(this.auditSection, "name", "notes", "hours", "kind");
+		tuple.put("AuditReportId", this.auditSection.getAuditReport().getId());
+		tuple.put("draftMode", this.auditSection.getAuditReport().getDraftMode());
 	}
 }

@@ -17,28 +17,28 @@ public class AuditorAuditSectionListService extends AbstractService<Auditor, Aud
 	@Autowired
 	private AuditorAuditSectionRepository	repository;
 
-	private Collection<AuditSection>		auditsections;
-	private AuditReport						auditreport;
+	private Collection<AuditSection>		auditSections;
+	private AuditReport						auditReport;
 
 
 	@Override
 	public void load() {
 
 		int auditReportId = super.getRequest().getData("auditReportId", int.class);
-		this.auditreport = this.repository.findAuditReportById(auditReportId);
-		this.auditsections = this.repository.findAuditSectionsByAuditReport(this.auditreport.getId());
+		this.auditReport = this.repository.findAuditReportById(auditReportId);
+		this.auditSections = this.repository.findAuditSectionsByAuditReport(this.auditReport.getId());
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
-		status = this.auditreport != null;
+		status = this.auditReport != null;
 		super.setAuthorised(status);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObjects(this.auditsections, "name", "notes", "hours", "kind", "auditreport");
+		super.unbindObjects(this.auditSections, "name", "notes", "hours", "kind", "auditReport");
 	}
 
 }

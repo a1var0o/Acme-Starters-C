@@ -15,7 +15,7 @@ public class AuditorAuditReportCreateService extends AbstractService<Auditor, Au
 	private AuditorAuditReportRepository	repository;
 
 	private Auditor							auditor;
-	private AuditReport						auditreport;
+	private AuditReport						auditReport;
 
 
 	@Override
@@ -25,9 +25,9 @@ public class AuditorAuditReportCreateService extends AbstractService<Auditor, Au
 		userAccountId = super.getRequest().getPrincipal().getAccountId();
 		this.auditor = this.repository.findAuditorByUserAccountId(userAccountId);
 
-		this.auditreport = super.newObject(AuditReport.class);
-		this.auditreport.setDraftMode(true);
-		this.auditreport.setAuditor(this.auditor);
+		this.auditReport = super.newObject(AuditReport.class);
+		this.auditReport.setDraftMode(true);
+		this.auditReport.setAuditor(this.auditor);
 	}
 
 	@Override
@@ -40,21 +40,21 @@ public class AuditorAuditReportCreateService extends AbstractService<Auditor, Au
 
 	@Override
 	public void bind() {
-		super.bindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
+		super.bindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override
 	public void validate() {
-		super.validateObject(this.auditreport);
+		super.validateObject(this.auditReport);
 	}
 
 	@Override
 	public void execute() {
-		this.repository.save(this.auditreport);
+		this.repository.save(this.auditReport);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+		super.unbindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
 	}
 }

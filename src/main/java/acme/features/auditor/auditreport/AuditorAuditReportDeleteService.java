@@ -16,7 +16,7 @@ public class AuditorAuditReportDeleteService extends AbstractService<Auditor, Au
 
 	@Autowired
 	private AuditorAuditReportRepository	repository;
-	private AuditReport						auditreport;
+	private AuditReport						auditReport;
 
 
 	@Override
@@ -24,21 +24,21 @@ public class AuditorAuditReportDeleteService extends AbstractService<Auditor, Au
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		this.auditreport = this.repository.findAuditReportById(id);
+		this.auditReport = this.repository.findAuditReportById(id);
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditreport != null && this.auditreport.getDraftMode() && this.auditreport.getAuditor().isPrincipal();
+		status = this.auditReport != null && this.auditReport.getDraftMode() && this.auditReport.getAuditor().isPrincipal();
 
 		super.setAuthorised(status);
 	}
 
 	@Override
 	public void bind() {
-		super.bindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
+		super.bindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override
@@ -48,16 +48,16 @@ public class AuditorAuditReportDeleteService extends AbstractService<Auditor, Au
 
 	@Override
 	public void execute() {
-		Collection<AuditSection> auditsections;
+		Collection<AuditSection> auditSections;
 
-		auditsections = this.repository.findAuditSectionsByAuditReportId(this.auditreport.getId());
-		this.repository.deleteAll(auditsections);
-		this.repository.delete(this.auditreport);
+		auditSections = this.repository.findAuditSectionsByAuditReportId(this.auditReport.getId());
+		this.repository.deleteAll(auditSections);
+		this.repository.delete(this.auditReport);
 	}
 
 	@Override
 	public void unbind() {
 
-		super.unbindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+		super.unbindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
 	}
 }

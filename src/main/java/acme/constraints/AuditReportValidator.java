@@ -51,7 +51,7 @@ public class AuditReportValidator extends AbstractValidator<ValidAuditReport, Au
 			{
 				boolean validInterval;
 
-				validInterval = auditReport.getDraftMode() || auditReport.getEndMoment() != null && auditReport.getEndMoment() != null && MomentHelper.isBefore(auditReport.getStartMoment(), auditReport.getEndMoment());
+				validInterval = auditReport.getDraftMode() || MomentHelper.isBefore(auditReport.getStartMoment(), auditReport.getEndMoment());
 
 				super.state(context, validInterval, "*", "acme.validation.auditreport.interval.message");
 			}

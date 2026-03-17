@@ -14,42 +14,42 @@ public class AuditorAuditReportUpdateService extends AbstractService<Auditor, Au
 
 	@Autowired
 	private AuditorAuditReportRepository	repository;
-	private AuditReport						auditreport;
+	private AuditReport						auditReport;
 
 
 	@Override
 	public void load() {
 		int id;
 		id = super.getRequest().getData("id", int.class);
-		this.auditreport = this.repository.findAuditReportById(id);
+		this.auditReport = this.repository.findAuditReportById(id);
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditreport != null && this.auditreport.getDraftMode() && this.auditreport.getAuditor().isPrincipal();
+		status = this.auditReport != null && this.auditReport.getDraftMode() && this.auditReport.getAuditor().isPrincipal();
 		super.setAuthorised(status);
 	}
 
 	@Override
 	public void bind() {
-		super.bindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
+		super.bindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 	}
 
 	@Override
 	public void validate() {
-		super.validateObject(this.auditreport);
+		super.validateObject(this.auditReport);
 	}
 
 	@Override
 	public void execute() {
-		this.repository.save(this.auditreport);
+		this.repository.save(this.auditReport);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
+		super.unbindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
 	}
 
 	@Override
