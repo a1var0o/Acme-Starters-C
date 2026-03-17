@@ -1,7 +1,7 @@
 authenticated.auditor.form.title = Auditor
 
-authenticated.auditor.form.label.firm= Firm
-authenticated.auditor.form.label.highlights= Highlights
+authenticated.auditor.form.label.firm = Firm
+authenticated.auditor.form.label.highlights = Highlights
 authenticated.auditor.form.label.solicitor = Solicitor
 
 authenticated.auditor.form.button.create = Register

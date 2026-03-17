@@ -4,7 +4,6 @@ package acme.features.auditor.auditreport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractService;
 import acme.entities.AuditReport;
 import acme.realms.Auditor;
@@ -57,11 +56,5 @@ public class AuditorAuditReportCreateService extends AbstractService<Auditor, Au
 	@Override
 	public void unbind() {
 		super.unbindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode");
-	}
-
-	@Override
-	public void onSuccess() {
-		if (super.getRequest().getMethod().equals("POST"))
-			PrincipalHelper.handleUpdate();
 	}
 }

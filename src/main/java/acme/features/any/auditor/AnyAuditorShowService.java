@@ -15,7 +15,7 @@ public class AnyAuditorShowService extends AbstractService<Any, Auditor> {
 	@Autowired
 	private AnyAuditorRepository	repository;
 
-	private AuditReport				auditreport;
+	private AuditReport				auditReport;
 	private Auditor					auditor;
 
 
@@ -24,15 +24,15 @@ public class AnyAuditorShowService extends AbstractService<Any, Auditor> {
 		int auditReportId;
 		auditReportId = super.getRequest().getData("id", int.class);
 
-		this.auditreport = this.repository.findAuditReport(auditReportId);
-		this.auditor = this.auditreport.getAuditor();
+		this.auditReport = this.repository.findAuditReport(auditReportId);
+		this.auditor = this.auditReport.getAuditor();
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditreport != null;
+		status = this.auditReport != null;
 		super.setAuthorised(status);
 	}
 

@@ -14,7 +14,7 @@ public class AnyAuditReportShowService extends AbstractService<Any, AuditReport>
 	@Autowired
 	private AnyAuditReportRepository	repository;
 
-	private AuditReport					auditreport;
+	private AuditReport					auditReport;
 
 
 	@Override
@@ -22,19 +22,19 @@ public class AnyAuditReportShowService extends AbstractService<Any, AuditReport>
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		this.auditreport = this.repository.findAuditReportById(id);
+		this.auditReport = this.repository.findAuditReportById(id);
 	}
 
 	@Override
 	public void authorise() {
 		boolean status;
 
-		status = this.auditreport != null && !this.auditreport.getDraftMode();
+		status = this.auditReport != null && !this.auditReport.getDraftMode();
 		super.setAuthorised(status);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObject(this.auditreport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "auditor");
+		super.unbindObject(this.auditReport, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "auditor");
 	}
 }

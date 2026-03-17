@@ -16,25 +16,22 @@ public class AnyAuditReportListService extends AbstractService<Any, AuditReport>
 	@Autowired
 	private AnyAuditReportRepository	repository;
 
-	private Collection<AuditReport>		auditreports;
+	private Collection<AuditReport>		auditReports;
 
 
 	@Override
 	public void load() {
-		this.auditreports = this.repository.findPublishedAuditReports();
+		this.auditReports = this.repository.findPublishedAuditReports();
 	}
 
 	@Override
 	public void authorise() {
-		boolean status;
-
-		status = super.getRequest().getPrincipal().hasRealmOfType(Any.class);
-		super.setAuthorised(status);
+		super.setAuthorised(true);
 	}
 
 	@Override
 	public void unbind() {
-		super.unbindObjects(this.auditreports, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "auditor");
+		super.unbindObjects(this.auditReports, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo", "draftMode", "auditor");
 	}
 
 }

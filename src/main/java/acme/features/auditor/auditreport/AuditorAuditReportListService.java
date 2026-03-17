@@ -21,8 +21,10 @@ public class AuditorAuditReportListService extends AbstractService<Auditor, Audi
 
 	@Override
 	public void load() {
-		int accountId = super.getRequest().getPrincipal().getAccountId();
-		this.auditreports = this.repository.findAuditReportsByAuditorAccountId(accountId);
+		int auditorId;
+
+		auditorId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		this.auditreports = this.repository.findAuditReportsByAuditorAccountId(auditorId);
 	}
 
 	@Override

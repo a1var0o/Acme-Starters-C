@@ -24,34 +24,34 @@ public class AuditReportValidator extends AbstractValidator<ValidAuditReport, Au
 	}
 
 	@Override
-	public boolean isValid(final AuditReport auditreport, final ConstraintValidatorContext context) {
+	public boolean isValid(final AuditReport auditReport, final ConstraintValidatorContext context) {
 		assert context != null;
 
 		boolean result;
 
-		if (auditreport == null)
+		if (auditReport == null)
 			result = true;
 		else {
 			{
 				boolean uniqueAuditReport;
 				AuditReport existingAuditReport;
 
-				existingAuditReport = this.repository.findAuditReportByTicker(auditreport.getTicker());
-				uniqueAuditReport = existingAuditReport == null || existingAuditReport.equals(auditreport);
+				existingAuditReport = this.repository.findAuditReportByTicker(auditReport.getTicker());
+				uniqueAuditReport = existingAuditReport == null || existingAuditReport.equals(auditReport);
 
 				super.state(context, uniqueAuditReport, "ticker", "acme.validation.auditreport.duplicated-ticker.message");
 			}
 			{
 				boolean enoughAuditSections;
 
-				enoughAuditSections = auditreport.getDraftMode() || !this.repository.getAuditSectionsByAuditReportId(auditreport.getId()).isEmpty();
+				enoughAuditSections = auditReport.getDraftMode() || !this.repository.getAuditSectionsByAuditReportId(auditReport.getId()).isEmpty();
 
 				super.state(context, enoughAuditSections, "*", "acme.validation.auditreport.auditsections.message");
 			}
 			{
 				boolean validInterval;
 
-				validInterval = auditreport.getDraftMode() || auditreport.getEndMoment() != null && auditreport.getEndMoment() != null && MomentHelper.isBefore(auditreport.getStartMoment(), auditreport.getEndMoment());
+				validInterval = auditReport.getDraftMode() || auditReport.getEndMoment() != null && auditReport.getEndMoment() != null && MomentHelper.isBefore(auditReport.getStartMoment(), auditReport.getEndMoment());
 
 				super.state(context, validInterval, "*", "acme.validation.auditreport.interval.message");
 			}
