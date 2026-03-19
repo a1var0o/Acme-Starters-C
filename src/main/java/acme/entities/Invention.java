@@ -83,8 +83,8 @@ public class Invention extends AbstractEntity {
 	public Double getMonthsActive() {
 		double res = 0.;
 
-		if (this.startMoment != null && this.endMoment != null)
-			res = MomentHelper.computeDifference(this.startMoment, this.endMoment, ChronoUnit.MONTHS);
+		if (this.getStartMoment() != null && this.getEndMoment() != null)
+			res = MomentHelper.computeDifference(this.getStartMoment(), this.getEndMoment(), ChronoUnit.MONTHS);
 		return res;
 	}
 
