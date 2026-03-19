@@ -1,40 +1,60 @@
 key,ticker,name,description,start-moment,end-moment,more-info,draft-mode,key:inventor
-# Base case
-invention-01,IU00-12345,My first invention,A great new invention,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-01
-# Ticker (^[A-Z]{2}[0-9]{2}-\\w{5,10}$)
-# Ticker 10 digits
-invention-02,NI13-9999999999,My first invention,A great new invention,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-02
-# Ticker 5 digits
-invention-03,AI20-00000,My first invention,A great new invention,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-02
-# Name (string min=1,max=75)
-# Name 1 char
-invention-04,AI20-00003,L,A great new invention,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# Name 75 chars
-invention-05,AI20-00002,My first invention,Lorem ipsum dolor sit amet. consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# Description (string min=1,max=255)
-# Description 1 char
-invention-06,IU00-123450,My first invention,L,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# Description 255 chars
-# Description non latin chars
-invention-07,IU00-123451,My first invention,洛伦·伊普森,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-invention-08,IU00-123452,My first invention,لوريم إيبسوم,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# Start-moment (date from 2000/01/01 00:00 to 2200/12/31 23:59,must be in the future with respect to the publish date)
-# Start-moment min
-invention-09,IU00-123453,My first invention,A great new invention,2000/01/01 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# Start-moment min + 1
-invention-10,IU00-123454,My first invention,A great new invention,2000/01/01 00:01,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# Start-moment max
-invention-11,IU00-123455,My first invention,A great new invention,2200/12/31 23:59,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# Start-moment max - 1
-invention-12,IU00-123456,My first invention,A great new invention,2200/12/31 23:59,2025/05/16 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# End-moment (date from 2000/01/01 00:00 to 2200/12/31 23:59,must be in the future with respect to the publish date)
-# End-moment min
-invention-13,IU00-123457,My first invention,A great new invention,2025/09/12 00:00,2000/01/01 00:00,http://www.lorem-ipsum.org,true,inventor-03
-# End-moment max
-invention-14,IU00-123458,My first invention,A great new invention,2025/09/12 00:00,2025/12/31 23:59,http://www.lorem-ipsum.org,true,inventor-03
-# More-info (optional string validUrl)
-invention-15,IU00-123459,My first invention,A great new invention,2025/09/12 00:00,2025/05/16 00:00,http://example.org?a=1&b=2,true,inventor-03
-invention-16,IU00-123460,My first invention,A great new invention,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org/dolor/sit.html#dolor,true,inventor-03
-invention-17,IU00-123461,My first invention,A great new invention,2025/09/12 00:00,2025/05/16 00:00,,true,inventor-03
-# Test draft-mode (boolean)
-invention-18,IU00-123462,My first invention,A great new invention,2025/09/12 00:00,2025/05/16 00:00,http://www.lorem-ipsum.org,false,inventor-03
+#Valid data
+invention-01,AA00-12345_aB,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,false,inventor-01
+#Test ticker
+invention-02,AA00-12345,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/01/01 00:00,2025/09/27 20:00,null,true,inventor-01
+invention-03,AA00-12345_,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-04,AA00-12345_aB9,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-05,AA00-12345_aB9L,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+#Test name,"",""
+invention-06,AA00-12345__,L,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-07,AA00-12345_a,Lo,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-08,AA00-12345_b,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod t","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-09,AA00-12345_c,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod te","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-10,AA00-12345_d,โลเร็ม อิปซัม,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-11,AA00-12345_e,لوريم إيبسوم,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-12,AA00-12345_f,洛伦·伊普森,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-13,AA00-12345_g,<marquee>Hacked</marquee>,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-14,AA00-12345_h,<script>alert(‘Hacked!’);</script>,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-15,AA00-12345_i,' or 'A' = 'A,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+#Test description,"","","","","","","",""
+invention-16,AA00-12345_j,"Lorem ipsum dolor sit amet, consectetu",L,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-17,AA00-12345_k,"Lorem ipsum dolor sit amet, consectetu",Lo,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-18,AA00-12345_l,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-19,AA00-12345_m,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-20,AA00-12345_n,"Lorem ipsum dolor sit amet, consectetu",โลเร็ม อิปซัม,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-21,AA00-12345_o,"Lorem ipsum dolor sit amet, consectetu",لوريم إيبسوم,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-22,AA00-12345_p,"Lorem ipsum dolor sit amet, consectetu",洛伦·伊普森,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-23,AA00-12345_q,"Lorem ipsum dolor sit amet, consectetu",<marquee>Hacked</marquee>,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-24,AA00-12345_r,"Lorem ipsum dolor sit amet, consectetu",<script>alert(‘Hacked!’);</script>,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+invention-25,AA00-12345_s,"Lorem ipsum dolor sit amet, consectetu",' or 'A' = 'A,2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
+#Test start-moment
+invention-26,AA00-12345_t,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2000/01/01 00:00,2025/09/27 20:00,null,true,inventor-01
+invention-27,AA00-12345_u,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2000/01/01 00:01,2025/09/27 20:00,null,true,inventor-01
+invention-28,AA00-12345_v,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2200/12/31 23:58,2025/09/27 20:00,null,true,inventor-01
+invention-29,AA00-12345_w,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2200/12/31 23:59,2025/09/27 20:00,null,true,inventor-01
+#Test end-moment
+invention-30,AA00-12345_x,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2000/01/01 00:00,null,true,inventor-01
+invention-31,AA00-12345_y,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2000/01/01 00:01,null,true,inventor-02
+invention-32,AA00-12345_z,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2200/12/31 23:58,null,true,inventor-01
+invention-33,AA00-12345_aA,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2200/12/31 23:59,null,true,inventor-01
+#Test more-info
+invention-34,AA00-12345_aC,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://lorem.com/ipsum,true,inventor-01
+invention-35,AA00-12345_aD,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://a.b,true,inventor-01
+invention-36,AA00-12345_aE,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",true,inventor-01
+invention-37,AA00-12345_aF,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",true,inventor-01
+invention-38,AA00-12345_aG,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://www.lorem-ipsum.org,true,inventor-01
+invention-39,AA00-12345_aH,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,https://www.lorem-ipsum.org,true,inventor-01
+invention-40,AA00-12345_aI,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://www.lorem-ipsum.org/dolor/sit.html,true,inventor-01
+invention-41,AA00-12345_aJ,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://www.lorem-ipsum.org/dolor/sit.html#dolor,true,inventor-01
+invention-42,AA00-12345_aK,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org?a=1&b=2,true,inventor-01
+invention-43,AA00-12345_aL,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org?,true,inventor-01
+invention-44,AA00-12345_aM,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org?a,true,inventor-01
+invention-45,AA00-12345_aN,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org?a&b,true,inventor-01
+invention-46,AA00-12345_aO,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org/,true,inventor-01
+invention-47,AA00-12345_aP,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org/a,true,inventor-02
+invention-48,AA00-12345_aQ,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org/a/b,true,inventor-01
+invention-49,AA00-12345_aR,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org/a/b?,true,inventor-01
+invention-50,AA00-12345_aS,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,http://example.org/a/b?a&b,true,inventor-01
+#Test draft-more
+invention-51,AA00-12345_aT,"Lorem ipsum dolor sit amet, consectetu","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",2025/06/15 21:00,2025/09/27 20:00,null,true,inventor-01
