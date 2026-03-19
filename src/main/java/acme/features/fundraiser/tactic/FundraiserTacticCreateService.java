@@ -18,7 +18,6 @@ public class FundraiserTacticCreateService extends AbstractService<Fundraiser, T
 	@Autowired
 	private FundraiserTacticRepository	repository;
 
-	private Fundraiser					fundraiser;
 	private Strategy					strategy;
 	private Tactic						tactic;
 
