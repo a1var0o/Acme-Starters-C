@@ -7,10 +7,11 @@ acme.validation.sponsorship.donations.message		   = Los patrocinios no pueden se
 acme.validation.sponsorship.interval.message    	   = Las fechas de inicio y finalización deben formar un intervalo temporal válido
 acme.validation.sponsorship.no-future-interval.message = El intervalo debe de empezar en el futuro con respecto a la fecha de publicación
 
-acme.validation.strategy.no-tactics-and-published.message = Si la estrategia está publicada, debe de teenr al menos una táctica asociada
+acme.validation.strategy.no-tactics-and-published.message = Si la estrategia está publicada, debe de tener al menos una táctica asociada
 acme.validation.strategy.correct-interval.message = Si la estrategia está publicada, el momento de inicio debe ser anterior al momento de finalización
 acme.validation.strategy.duplicated-ticker.message = Ya existe una estrategia con la referencia introducida
 acme.validation.strategy.no-future-interval.message = El intervalo debe de empezar en el futuro con respecto a la fecha de publicación
+acme.validation.tactic.total-sum-greater-than-100 = La suma del porcentage esperado de las tácticas asociadas a esta estrategia sería mayor que 100, elija un valor menor
 
 acme.validation.invention.duplicated-ticker.message = El ticker tiene que ser único
 acme.validation.invention.parts.message = Un invento necesita al menos una parte para poder ser publicado
