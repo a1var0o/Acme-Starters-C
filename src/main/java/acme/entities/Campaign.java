@@ -35,65 +35,70 @@ import lombok.Setter;
 @ValidCampaign
 public class Campaign extends AbstractEntity {
 
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@ValidTicker
 	@Column(unique = true)
-	private String ticker;
+	private String				ticker;
 
 	@Mandatory
 	@ValidHeader
 	@Column
-	private String name;
+	private String				name;
 
 	@Mandatory
 	@ValidText
 	@Column
-	private String description;
+	private String				description;
 
 	@Mandatory
 	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date startMoment;
+	private Date				startMoment;
 
 	@Mandatory
 	@ValidMoment
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date endMoment;
+	private Date				endMoment;
 
 	@Optional
 	@ValidUrl
 	@Column
-	private String moreInfo;
+	private String				moreInfo;
 
 	@Mandatory
 	@Valid
 	@Column
-	private Boolean draftMode;
+	private Boolean				draftMode;
 
 	// Derived attributes
 
 	@Autowired
 	@Transient
-	private CampaignRepository repository;
+	private CampaignRepository	repository;
+
 
 	@Mandatory
 	@Valid
 	@Transient
-	private Double monthsActive() {
-		return MomentHelper.computeDifference(this.startMoment, this.endMoment, ChronoUnit.MONTHS);
+	private Double getMonthsActive() {
+		Double d = 0.0;
+		if (this.getStartMoment() != null && this.getEndMoment() != null)
+			d = MomentHelper.computeDifference(this.getStartMoment(), this.getEndMoment(), ChronoUnit.MONTHS);
+		return d;
 	}
 
 	@Mandatory
 	@ValidNumber(min = 0)
 	@Transient
-	private Double effort() {
+	private Double getTotalEffort() {
 		Double sumEffort = this.repository.totalEffort(this.getId());
 		sumEffort = sumEffort != null ? sumEffort : 0.0;
 		return sumEffort;
 	}
 	// Relationships ------------------------------------------------
+
 
 	@Mandatory
 	@Valid
