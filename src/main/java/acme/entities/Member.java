@@ -2,7 +2,7 @@
 package acme.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -22,11 +22,11 @@ public class Member extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 	@Mandatory
 	@Valid
-	@ManyToMany
+	@ManyToOne
 	private ProjectMember		projectMember;
 
 	@Mandatory
 	@Valid
-	@ManyToMany
+	@ManyToOne
 	private Project				project;
 }
