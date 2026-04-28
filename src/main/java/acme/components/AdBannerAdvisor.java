@@ -15,7 +15,7 @@ public class AdBannerAdvisor {
 	private AdBannerRepository repository;
 
 
-	@ModelAttribute("AdBanner")
+	@ModelAttribute("adBanner")
 	public AdBanner getAdBanner() {
 		AdBanner result;
 		try {
