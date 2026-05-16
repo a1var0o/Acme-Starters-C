@@ -23,14 +23,10 @@ public class ProjectMemberCampaignShowService extends AbstractService<ProjectMem
 
 	@Override
 	public void authorise() {
-		boolean status = this.campaign != null;
+		boolean status = this.campaign != null && this.campaign.getProject() != null;
 		if (status) {
 			int accountId = super.getRequest().getPrincipal().getAccountId();
-			int projectId;
-			if (this.campaign.getProject() != null)
-				projectId = this.campaign.getProject().getId();
-			else
-				projectId = super.getRequest().getData("projectId", int.class);
+			int projectId = this.campaign.getProject().getId();
 			status = this.repository.isProjectMember(projectId, accountId);
 		}
 		super.setAuthorised(status);
@@ -43,10 +39,7 @@ public class ProjectMemberCampaignShowService extends AbstractService<ProjectMem
 		super.unbindObject(this.campaign, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 		super.unbindGlobal("hasProject", this.campaign.getProject() != null);
 
-		if (this.campaign.getProject() != null)
-			projectId = this.campaign.getProject().getId();
-		else
-			projectId = super.getRequest().getData("projectId", int.class);
+		projectId = this.campaign.getProject().getId();
 
 		super.unbindGlobal("projectId", projectId);
 	}

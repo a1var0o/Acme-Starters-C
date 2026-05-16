@@ -23,14 +23,10 @@ public class ProjectMemberStrategyShowService extends AbstractService<ProjectMem
 
 	@Override
 	public void authorise() {
-		boolean status = this.strategy != null;
+		boolean status = this.strategy != null && this.strategy.getProject() != null;
 		if (status) {
 			int accountId = super.getRequest().getPrincipal().getAccountId();
-			int projectId;
-			if (this.strategy.getProject() != null)
-				projectId = this.strategy.getProject().getId();
-			else
-				projectId = super.getRequest().getData("projectId", int.class);
+			int projectId = this.strategy.getProject().getId();
 			status = this.repository.isProjectMember(projectId, accountId);
 		}
 		super.setAuthorised(status);
@@ -43,10 +39,7 @@ public class ProjectMemberStrategyShowService extends AbstractService<ProjectMem
 		super.unbindObject(this.strategy, "ticker", "name", "description", "startMoment", "endMoment", "moreInfo");
 		super.unbindGlobal("hasProject", this.strategy.getProject() != null);
 
-		if (this.strategy.getProject() != null)
-			projectId = this.strategy.getProject().getId();
-		else
-			projectId = super.getRequest().getData("projectId", int.class);
+		projectId = this.strategy.getProject().getId();
 
 		super.unbindGlobal("projectId", projectId);
 	}
