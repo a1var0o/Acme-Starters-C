@@ -4,24 +4,37 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:form-textbox code="fundraiser.strategy.list.label.ticker" path="ticker"/>
-	<acme:form-textbox code="fundraiser.strategy.list.label.name" path="name"/>
-	<acme:form-textarea code="fundraiser.strategy.list.label.description" path="description"/>
-	<acme:form-moment code="fundraiser.strategy.list.label.startMoment" path="startMoment"/>
-	<acme:form-moment code="fundraiser.strategy.list.label.endMoment" path="endMoment"/>
-	<acme:form-url code="fundraiser.strategy.form.label.moreInfo" path="moreInfo"/>
-	
-	<jstl:choose>	 
+	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|assign-project') && draftMode == false && hasProject == false}">
+			<acme:form-textbox code="fundraiser.strategy.list.label.ticker" path="ticker" readonly="true"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.name" path="name" readonly="true"/>
+			<acme:form-textarea code="fundraiser.strategy.list.label.description" path="description" readonly="true"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.startMoment" path="startMoment" readonly="true"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.endMoment" path="endMoment" readonly="true"/>
+			<acme:form-url code="fundraiser.strategy.form.label.moreInfo" path="moreInfo" readonly="true"/>
 			<acme:form-select code="fundraiser.strategy.form.label.project" path="project" choices="${projects}"/>
 			<acme:button code="fundraiser.strategy.form.button.tactics" action="/fundraiser/tactic/list?strategyId=${id}"/>
 			<acme:submit code="fundraiser.strategy.form.button.assign-project" action="/fundraiser/strategy/assign-project"/>
 		</jstl:when>
+
 		<jstl:when test="${_command == 'show' && draftMode == false && hasProject == true}">
-			<acme:form-select code="fundraiser.strategy.form.label.project" path="project" choices="${projects}"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.ticker" path="ticker" readonly="true"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.name" path="name" readonly="true"/>
+			<acme:form-textarea code="fundraiser.strategy.list.label.description" path="description" readonly="true"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.startMoment" path="startMoment" readonly="true"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.endMoment" path="endMoment" readonly="true"/>
+			<acme:form-url code="fundraiser.strategy.form.label.moreInfo" path="moreInfo" readonly="true"/>
+			<acme:form-select code="fundraiser.strategy.form.label.project" path="project" choices="${projects}" readonly="true"/>
 			<acme:button code="fundraiser.strategy.form.button.tactics" action="/fundraiser/tactic/list?strategyId=${id}"/>
 		</jstl:when>
+
 		<jstl:when test="${acme:anyOf(_command, 'show|assign-project') && draftMode == true && hasProject == false}">
+			<acme:form-textbox code="fundraiser.strategy.list.label.ticker" path="ticker"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.name" path="name"/>
+			<acme:form-textarea code="fundraiser.strategy.list.label.description" path="description"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.startMoment" path="startMoment"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.endMoment" path="endMoment"/>
+			<acme:form-url code="fundraiser.strategy.form.label.moreInfo" path="moreInfo"/>
 			<acme:form-select code="fundraiser.strategy.form.label.project" path="project" choices="${projects}"/>
 			<acme:button code="fundraiser.strategy.form.button.tactics" action="/fundraiser/tactic/list?strategyId=${id}"/>
 			<acme:submit code="fundraiser.strategy.form.button.assign-project" action="/fundraiser/strategy/assign-project"/>
@@ -29,21 +42,42 @@
 			<acme:submit code="fundraiser.strategy.form.button.delete" action="/fundraiser/strategy/delete"/>
 			<acme:submit code="fundraiser.strategy.form.button.publish" action="/fundraiser/strategy/publish"/>
 		</jstl:when>
+
 		<jstl:when test="${_command == 'show' && draftMode == true && hasProject == true}">
-			<acme:form-select code="fundraiser.strategy.form.label.project" path="project" choices="${projects}"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.ticker" path="ticker"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.name" path="name"/>
+			<acme:form-textarea code="fundraiser.strategy.list.label.description" path="description"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.startMoment" path="startMoment"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.endMoment" path="endMoment"/>
+			<acme:form-url code="fundraiser.strategy.form.label.moreInfo" path="moreInfo"/>
+			<acme:form-select code="fundraiser.strategy.form.label.project" path="project" choices="${projects}" readonly="true"/>
 			<acme:button code="fundraiser.strategy.form.button.tactics" action="/fundraiser/tactic/list?strategyId=${id}"/>
 			<acme:submit code="fundraiser.strategy.form.button.update" action="/fundraiser/strategy/update"/>
 			<acme:submit code="fundraiser.strategy.form.button.delete" action="/fundraiser/strategy/delete"/>
 			<acme:submit code="fundraiser.strategy.form.button.publish" action="/fundraiser/strategy/publish"/>
 		</jstl:when>
+
 		<jstl:when test="${acme:anyOf(_command, 'update|delete|publish') && draftMode == true}">
+			<acme:form-textbox code="fundraiser.strategy.list.label.ticker" path="ticker"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.name" path="name"/>
+			<acme:form-textarea code="fundraiser.strategy.list.label.description" path="description"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.startMoment" path="startMoment"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.endMoment" path="endMoment"/>
+			<acme:form-url code="fundraiser.strategy.form.label.moreInfo" path="moreInfo"/>
 			<acme:button code="fundraiser.strategy.form.button.tactics" action="/fundraiser/tactic/list?strategyId=${id}"/>
 			<acme:submit code="fundraiser.strategy.form.button.update" action="/fundraiser/strategy/update"/>
 			<acme:submit code="fundraiser.strategy.form.button.delete" action="/fundraiser/strategy/delete"/>
 			<acme:submit code="fundraiser.strategy.form.button.publish" action="/fundraiser/strategy/publish"/>
 		</jstl:when>
+
 		<jstl:when test="${_command == 'create'}">
+			<acme:form-textbox code="fundraiser.strategy.list.label.ticker" path="ticker"/>
+			<acme:form-textbox code="fundraiser.strategy.list.label.name" path="name"/>
+			<acme:form-textarea code="fundraiser.strategy.list.label.description" path="description"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.startMoment" path="startMoment"/>
+			<acme:form-moment code="fundraiser.strategy.list.label.endMoment" path="endMoment"/>
+			<acme:form-url code="fundraiser.strategy.form.label.moreInfo" path="moreInfo"/>
 			<acme:submit code="fundraiser.strategy.form.button.create" action="/fundraiser/strategy/create"/>
-		</jstl:when>		
+		</jstl:when>
 	</jstl:choose>
 </acme:form>
