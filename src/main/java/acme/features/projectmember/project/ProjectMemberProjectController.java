@@ -1,3 +1,4 @@
+
 package acme.features.projectmember.project;
 
 import javax.annotation.PostConstruct;
@@ -18,5 +19,6 @@ public class ProjectMemberProjectController extends AbstractController<ProjectMe
 
 		super.addBasicCommand("list", ProjectMemberProjectListService.class);
 		super.addBasicCommand("show", ProjectMemberProjectShowService.class);
+		super.addCustomCommand("list-jobs", "perform", ProjectMemberJobicyListService.class);
 	}
 }
