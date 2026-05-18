@@ -37,5 +37,6 @@ public class ProjectMemberJobicyListService extends AbstractService<ProjectMembe
 	@Override
 	public void unbind() {
 		super.unbindGlobal("keyWords", this.project.getKeywords());
+		super.unbindGlobal("projectId", this.project.getId());
 	}
 }
