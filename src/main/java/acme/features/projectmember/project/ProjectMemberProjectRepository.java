@@ -1,3 +1,4 @@
+
 package acme.features.projectmember.project;
 
 import java.util.Collection;
@@ -16,4 +17,7 @@ public interface ProjectMemberProjectRepository extends AbstractRepository {
 
 	@Query("select p from Project p where p.id = :id")
 	Project findProjectById(int id);
+
+	@Query("select count(m) > 0 from Member m where m.projectMember.id = :projectMemberId and m.project.id = :projectId ")
+	Boolean isMemberOfProject(int projectMemberId, int projectId);
 }
